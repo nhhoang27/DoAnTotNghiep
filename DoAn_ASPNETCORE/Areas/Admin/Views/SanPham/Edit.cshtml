@@ -1,0 +1,154 @@
+﻿@model DoAn_ASPNETCORE.Areas.Admin.Models.SanPhamModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="wrapper">
+    @await Html.PartialAsync("/Areas/Admin/Views/Shared/SideBar.cshtml")
+    <div class="main-panel">
+        <!-- Navbar -->
+        @await Html.PartialAsync("/Areas/Admin/Views/Shared/NavBar.cshtml")
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Edit" asp-area="Admin" asp-controller="SanPham" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="ID" />
+                            <div class="form-group">
+                                <label asp-for="TenSP" class="control-label"></label>
+                                <input asp-for="TenSP" class="form-control" />
+                                <span asp-validation-for="TenSP" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MaLoai" class="control-label"></label>
+                                <select asp-for="MaLoai" class="form-control" asp-items="ViewBag.MaLoai"></select>
+                                <span asp-validation-for="MaLoai" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DanhMuc" class="control-label"></label>
+                                <select asp-for="DanhMuc" class="form-control" asp-items="ViewBag.DanhMuc"></select>
+                                <span asp-validation-for="MaLoai" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Gia" class="control-label"></label>
+                                <input asp-for="Gia" class="form-control" />
+                                <span asp-validation-for="Gia" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="GiaMoi" class="control-label"></label>
+                                <input asp-for="GiaMoi" class="form-control" />
+                                <span asp-validation-for="GiaMoi" class="text-danger"></span>
+                            </div>
+                            <div class="custom-file">
+                                <label asp-for="Image" class="control-label"></label>
+                                <input type="file" name="ful" id="ful" class="custom-file-input" />
+                                <label class="custom-file-label" for="ful">Choose File</label>
+                            </div>
+
+                            <div class="form-group">
+                                @*Hien thi hinh anh*@
+                                <img id="imgPre" src="~/images/@Model.Image?@(new Random().Next(1,1000).ToString())" alt="no img" class="img-thumbnail" />
+                            </div>
+                            <div class="custom-file">
+                                <label asp-for="Image_List" class="control-label"></label>
+                                <input type="file" name="ful1" id="ful1" class="custom-file-input" />
+                                <label class="custom-file-label" for="ful1">Choose File</label>
+                            </div>
+
+                            <div class="form-group">
+                                @*Hien thi hinh anh*@
+                                <img id="imgPre1" src="~/images/@Model.Image_List?@(new Random().Next(1,1000).ToString())" alt="no img" class="img-thumbnail" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MoTaNgan" class="control-label"></label>
+                                <textarea id="editor" asp-for="MoTaNgan"></textarea>
+                                <span asp-validation-for="MoTaNgan" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MoTa" class="control-label"></label>
+                                <textarea id="editor1" asp-for="MoTa"></textarea>
+                                <span asp-validation-for="MoTa" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Size" class="control-label"></label>
+                                <input asp-for="Size" class="form-control" />
+                                <span asp-validation-for="Size" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SoLuong" class="control-label"></label>
+                                <input asp-for="SoLuong" class="form-control" />
+                                <span asp-validation-for="SoLuong" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NgayLap" class="control-label"></label>
+                                <input asp-for="NgayLap" class="form-control" />
+                                <span asp-validation-for="NgayLap" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TrangThai" class="control-label"></label>
+                                <input asp-for="TrangThai" class="form-control" />
+                                <span asp-validation-for="TrangThai" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            <script>
+
+                ClassicEditor
+                    .create(document.querySelector('#editor'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+                ClassicEditor
+                    .create(document.querySelector('#editor1'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+            <script>
+                function readURL(input, idImg) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $(idImg).attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    }
+                }
+
+                $('#ful1').change(function () {
+                    readURL(this, '#imgPre1');
+                });
+            </script>
+            <script>
+                function readURL(input, idImg) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $(idImg).attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    }
+                }
+
+                $('#ful').change(function () {
+                    readURL(this, '#imgPre');
+                });
+            </script>
+
+        }

@@ -1,0 +1,74 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using System;
+@using System.Globalization;
+
+<!--content-->
+<div class="content">
+    <div class="products-agileinfo">
+        <h2 class="tittle">Đồng hồ</h2>
+        <div class="container">
+            <div class="product-agileinfo-grids w3l">
+                <div class="col-md-3 product-agileinfo-grid">
+                    <div class="categories">
+                        <h3>Đồng hồ</h3>
+                        <ul class="tree-list-pad">
+                            <li>
+                                <input type="checkbox" checked="checked" id="item-0" /><label for="item-0"><span></span>Đồng hồ</label>
+                                <ul>
+                                    <li><a href="~/pages/products1/5">Đồng hồ Nam</a></li>
+                                    <li><a href="~/pages/products1/10">Đồng hồ Nữ</a></li>
+                                    <li><a href="~/pages/products1/11">Phụ kiện</a></li>
+
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="cat-img">
+                        <img class="img-responsive " src="~/images/45.jpg" alt="">
+                    </div>
+                </div>
+                <div class="product-tab1">
+                    @foreach (var item in ViewBag.lstSearch)
+                    {
+                        <div class="col-md-4 product-tab1-grid">
+                            <div class="grid-arr">
+                                <div class="grid-arrival">
+                                    <figure>
+                                        <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
+                                            <div class="grid-img">
+                                                <img src="~/images/@item.Image" class="img-responsive" alt="">
+                                            </div>
+
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 product-tab1-grid1 simpleCart_shelfItem">
+                            <div class="block">
+                                <div class="starbox small ghosting"> </div>
+                            </div>
+                            <div class="women">
+                                <h6><a href="~/pages/single/@item.ID">@item.TenSP</a></h6>
+                                <span class="size">@item.Size</span>
+                                <p><del>@item.Gia.ToString("C", CultureInfo.CurrentCulture)</del><em class="item_price">@item.GiaMoi.ToString("C", CultureInfo.CurrentCulture)</em></p>
+                                <a href="/addcart/@item.ID" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--content-->
+</div>
+
+<!--content-->

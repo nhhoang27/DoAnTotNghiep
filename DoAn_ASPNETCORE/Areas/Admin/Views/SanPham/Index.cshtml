@@ -1,0 +1,134 @@
+﻿@model DoAn_ASPNETCORE.Areas.Admin.Models.SanPhamViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="wrapper">
+    @await Html.PartialAsync("/Areas/Admin/Views/Shared/SideBar.cshtml")
+    <div class="main-panel">
+        <!-- Navbar -->
+        @await Html.PartialAsync("/Areas/Admin/Views/Shared/NavBar.cshtml")
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <p>
+                            <a asp-area="Admin" asp-controller="SanPham" asp-action="Create">Create New</a>
+                        </p>
+                        <form asp-controller="SanPham" asp-action="Index" method="get">
+                            <p>
+                                Tên Sản Phẩm: <input type="text" asp-for="SearchString"><button type="submit" class="btn-facebook">Tìm</button>
+                            </p>
+                        </form>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].TenSP)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].MaLoai)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].DanhMuc)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].Gia)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].GiaMoi)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].Image)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].Image_List)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].Size)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].SoLuong)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].NgayLap)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SanPhams[0].TrangThai)
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.SanPhams)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TenSP)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MaLoai)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DanhMuc)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Gia)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.GiaMoi)
+                                        </td>
+                                        <td>
+                                            <img src="~/images/@Html.DisplayFor(modelItem => item.Image)" class="img-thumbnail" />
+                                        </td>
+                                        <td>
+                                            <img src="~/images/@Html.DisplayFor(modelItem => item.Image_List)" class="img-thumbnail" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Size)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SoLuong)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NgayLap)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TrangThai)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function DeleteSession() {
+                $.ajax({
+                    url: "/Login/LogOut",
+                    type: "POST",
+                    success: function (data) {
+                        if (data.success === "True") {
+                            alert("Log out thành công...");
+                            location.href = '/'
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                })
+            }
+        </script>

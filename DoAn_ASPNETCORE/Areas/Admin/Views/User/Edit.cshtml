@@ -1,0 +1,69 @@
+﻿@model DoAn_ASPNETCORE.Areas.Admin.Models.UserModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="wrapper">
+    @await Html.PartialAsync("/Areas/Admin/Views/Shared/SideBar.cshtml")
+    <div class="main-panel">
+        <!-- Navbar -->
+        @await Html.PartialAsync("/Areas/Admin/Views/Shared/NavBar.cshtml")
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="ID" />
+                            <div class="form-group">
+                                <label asp-for="UserName" class="control-label"></label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password" class="control-label"></label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="HoTen" class="control-label"></label>
+                                <input asp-for="HoTen" class="form-control" />
+                                <span asp-validation-for="HoTen" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DiaChi" class="control-label"></label>
+                                <input asp-for="DiaChi" class="form-control" />
+                                <span asp-validation-for="DiaChi" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Sdt" class="control-label"></label>
+                                <input asp-for="Sdt" class="form-control" />
+                                <span asp-validation-for="Sdt" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Loai" class="control-label"></label>
+                                <input asp-for="Loai" class="form-control" />
+                                <span asp-validation-for="Loai" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TrangThai" class="control-label"></label>
+                                <input asp-for="TrangThai" class="form-control" />
+                                <span asp-validation-for="TrangThai" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

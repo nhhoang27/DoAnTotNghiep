@@ -1,0 +1,63 @@
+﻿@model DoAn_ASPNETCORE.Areas.Admin.Models.UserModel
+
+@{ ViewData["Title"] = "pages Page";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<!--content-->
+<div class="content">
+    <!--login-->
+    <div class="login">
+        <div class="main-agileits">
+            <div class="form-w3agile form1">
+                <h3>Register</h3>
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="key">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" name="Username" asp-for="UserName" placeholder="Tên đăng nhập">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                        <input type="text" name="Email" asp-for="Email" placeholder="Email">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="password" name="Password" asp-for="Password" placeholder="Password">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="text" name="HoTen" asp-for="HoTen" placeholder="Họ tên">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="text" name="DiaChi" asp-for="DiaChi" placeholder="Địa chỉ">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="key">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <input type="text" name="Sdt" asp-for="Sdt" placeholder="Số điện thoại">
+                        <input type="hidden" value="1" asp-for="Loai">
+                        <input type="hidden" value="1" asp-for="TrangThai">
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!--login-->
+</div>
+<!--content-->
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

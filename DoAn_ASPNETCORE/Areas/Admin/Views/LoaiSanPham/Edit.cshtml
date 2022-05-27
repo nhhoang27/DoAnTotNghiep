@@ -1,0 +1,45 @@
+﻿@model DoAn_ASPNETCORE.Areas.Admin.Models.LoaiSanPhamModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@await Html.PartialAsync("/Areas/Admin/Views/Shared/SideBar.cshtml")
+<div class="main-panel">
+    <!-- Navbar -->
+    @await Html.PartialAsync("/Areas/Admin/Views/Shared/NavBar.cshtml")
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ID" />
+                        <div class="form-group">
+                            <label asp-for="TenLoai" class="control-label"></label>
+                            <input asp-for="TenLoai" class="form-control" />
+                            <span asp-validation-for="TenLoai" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NhaCungCap" class="control-label"></label>
+                            <select asp-for="NhaCungCap" class="form-control" asp-items="ViewBag.NhaCungCap"></select>
+                            <span asp-validation-for="NhaCungCap" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TrangThai" class="control-label"></label>
+                            <input asp-for="TrangThai" class="form-control" />
+                            <span asp-validation-for="TrangThai" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
