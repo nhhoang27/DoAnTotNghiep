@@ -235,10 +235,10 @@
 
                     insert.ThanhTien = parseInt($("#thanhtien").val());
 
-                    insert.TrangThai = $("#trangthai").val();
+                    insert.TrangThai = parseInt($("#trangthai").val());
 
                     $.ajax({
-                        url: "../../api/HoaDonAPI/PostHoaDonModel",
+                        url: "/api/HoaDonAPI/PostHoaDonModel",
                         type: "POST",
                         contentType: "Application/json;charset-utf-8",
                         data: JSON.stringify(insert),
@@ -279,9 +279,9 @@
 
                     update.ThanhTien = parseInt($("#edit_thanhtien").val());
 
-                    update.TrangThai = $("#edit_trangthai").val();
+                    update.TrangThai = parseInt($("#edit_trangthai").val());
                     $.ajax({
-                        url: "../../api/HoaDonAPI/PutHoaDonModel/" + id,
+                        url: "/api/HoaDonAPI/PutHoaDonModel/" + id,
                         type: "PUT",
                         contentType: "Application/json;charset-utf-8",
                         data: JSON.stringify(update),
