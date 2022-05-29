@@ -46,10 +46,15 @@
                         int i = 0;
                         string sl = "";
                         string gia = "";
+                        var data = new List<ChiTietHoaDonModel>();
 
                     }
                     @foreach (var item in ViewBag.cart)
                     {
+                        var newDetail = new ChiTietHoaDonModel();
+                        sl = "";
+                        gia = "";
+                        TenSP = "";
                         i++;
                         long tongcong = @item.SanPham.GiaMoi * @item.Quantity;
                         tongtien += tongcong;
@@ -66,7 +71,10 @@
                             sl += @item.Quantity + "/";
                             gia += @item.SanPham.GiaMoi + "/";
                         }
-
+                        newDetail.TenSP = TenSP;
+                        newDetail.SoLuong = sl;
+                        newDetail.Gia = item.SanPham.GiaMoi.ToString();
+                        data.Add(newDetail);
                         <tr>
                             <td>
                                 <img src="~/images/@item.SanPham.Image " class="img-thumbnail" style="width:10%" alt="">
@@ -99,6 +107,14 @@
         </div>
     </div>
 </div>
+<style>
+    td, th{
+        padding:10px;
+    }
+    #DetailOrder input{
+        border:none;
+    }
+</style>
 <div class="modal fade" id="Checkout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -133,12 +149,37 @@
                         <label class="control-label">Bạn có mã khuyến mãi?</label>
                         <input type="text" name="KhuyenMai" class="form-control" />
                     </div>
-                    <input value="@TenSP" name="TenSP" />
-                    <input value="@sl" name="SoLuong" />
-                    <input value="@gia" name="Gia" />
-                    <input value="1" name="TrangThai" />
+                    <table id="DetailOrder" border="1" cellpadding="30">
+                        <tr style="background:antiquewhite">
+                            <th>
+                                Tên sản phẩm
+                            </th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        @foreach (var item in data)
+                        {
+                            <tr>
+                                <td><input value="@item.TenSP" name="TenSP" /></td>
+                                <td><input value="@item.SoLuong" name="SoLuong" /></td>
+                                <td><input value="@item.Gia" name="Gia" /></td>
+                                <td><input value="1" name="TrangThai" /></td>
+                            </tr>
+                        }
+                        @*@Html.LabelFor(model => model.ListDetail)
+                        @for (var j = 0; j < CTHD.ListDetail.Count; j++)
+                        {
+
+                            @Html.HiddenFor(m => Model.ListDetail[j].TenSP , new { Value = "a" })
+                            @Html.HiddenFor(m => Model.ListDetail[j].SoLuong, new { @value = CTHD.ListDetail[j].SoLuong })
+                            @Html.HiddenFor(m => Model.ListDetail[j].Gia, new { @value = CTHD.ListDetail[j].Gia })
+                            @Html.HiddenFor(m => Model.ListDetail[j].TrangThai, new { @value = 1 })
+                        }*@
+                    </table>
+                    
                     <div class="form-group">
-                        <input type="submit" value="DatHang" class="btn btn-primary" />
+                        <input type="submit" value="Đặt Hàng" class="btn btn-primary" />
                     </div>
                 </form>
             </div>

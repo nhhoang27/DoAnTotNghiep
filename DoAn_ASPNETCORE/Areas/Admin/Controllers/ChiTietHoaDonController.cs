@@ -49,7 +49,6 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
             ViewData["SanPham1"] = new SelectList(_context.Set<SanPhamModel>(), "Gia", "Gia");
             ViewData["HoaDon"] = new SelectList(_context.Set<HoaDonModel>(), "ID", "ID");
             return View();
-            return View();
            
         }
 
