@@ -43,11 +43,15 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
                 ChiTietHoaDons = await ChiTietHoaDon.ToListAsync()
             };
             */
-            ViewBag.CTHD = from m in _context.ChiTietHoaDonModel
-                             select m;
-            ViewData["SanPham"] = new SelectList(_context.Set<SanPhamModel>(), "TenSP", "TenSP");
-            ViewData["SanPham1"] = new SelectList(_context.Set<SanPhamModel>(), "Gia", "Gia");
-            ViewData["HoaDon"] = new SelectList(_context.Set<HoaDonModel>(), "ID", "ID");
+            ViewBag.CTHD = _context.ChiTietHoaDonModel.AsNoTracking().ToList<ChiTietHoaDonModel>();
+            //ViewBag.CTHD = from m in _context.ChiTietHoaDonModel
+            //                 select m;
+            //ViewData["SanPham"] = new SelectList(_context.Set<SanPhamModel>(), "TenSP", "TenSP");
+            //ViewData["SanPham1"] = new SelectList(_context.Set<SanPhamModel>(), "Gia", "Gia");
+            //ViewData["HoaDon"] = new SelectList(_context.Set<HoaDonModel>(), "ID", "ID");
+            ViewBag.SanPham = new SelectList(_context.Set<SanPhamModel>(), "TenSP", "TenSP");
+            ViewBag.SanPham1 = new SelectList(_context.Set<SanPhamModel>(), "Gia", "Gia");
+            ViewBag.HoaDon = new SelectList(_context.Set<HoaDonModel>(), "ID", "ID");
             return View();
            
         }
