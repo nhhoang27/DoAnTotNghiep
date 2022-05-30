@@ -139,13 +139,13 @@ namespace DoAn_ASPNETCORE.Controllers
             "newVisit",
             new { visits = visitors.ToString(), message = visit_text });
             ViewBag.Username = HttpContext.Session.GetString("username");
-           
+
             var sanpham = (from m in _context.SanPhamModel
                            where m.ID == id
-                           select m).ToList();
+                           select m).FirstOrDefault();
             ViewBag.SanPham = sanpham;
             var Recent = (from m in _context.SanPhamModel
-                          where m.MaLoai == 2
+                          where m.MaLoai == sanpham.MaLoai
                           select m).Take(4).ToList();
             ViewBag.Recent = Recent;
             var BetsSell = (from l in _context.SanPhamModel
