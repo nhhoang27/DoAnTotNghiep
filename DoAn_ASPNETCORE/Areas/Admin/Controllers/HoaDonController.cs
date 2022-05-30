@@ -83,25 +83,40 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,User_ID,HoTen,Sdt,ThanhTien,TrangThai")] HoaDonModel hoaDonModel, [Bind("ID,HoaDon_ID,TenSP,SoLuong,Gia,KhuyenMai,ThanhTien,TrangThai")] ChiTietHoaDonModel chitiethoaDonModel)
+        public async Task<IActionResult> Create([Bind("ID,User_ID,HoTen,Sdt,ThanhTien,TrangThai,ListDetail")] HoaDonModel hoaDonModel, /*[Bind("ID,HoaDon_ID,TenSP,SoLuong,Gia,KhuyenMai,ThanhTien,TrangThai")] ChiTietHoaDonModel[] LstchitiethoaDonModel*/ string[] TenSP, string[] SoLuong, string[] Gia, int[] TrangThai)
         {
             var HoaDon = from m in _context.HoaDonModel
                          select m;
             int size = HoaDon.Count();
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            _context.Add(hoaDonModel);
+            size++;
+            await _context.SaveChangesAsync();
+            for(var i = 0; i < TenSP.Count(); i++)
             {
-                _context.Add(hoaDonModel);
-                size++;
+                var CTDH = new ChiTietHoaDonModel();
+                CTDH.HoaDon_ID = hoaDonModel.ID;
+                CTDH.TenSP = TenSP[i];
+                CTDH.SoLuong = SoLuong[i];
+                CTDH.Gia = Gia[i];
+                CTDH.TrangThai = TrangThai[i];
+                _context.Add(CTDH);
                 await _context.SaveChangesAsync();
-                chitiethoaDonModel.HoaDon_ID = size;
-                _context.Add(chitiethoaDonModel);
-                await _context.SaveChangesAsync();
-                HttpContext.Session.Remove("cart");
-                var url = Url.RouteUrl(new {area="", controller = "Pages",action="Index"});
-                return Redirect(url);
             }
-            ViewData["User_ID"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", hoaDonModel.User_ID);
-            return View(hoaDonModel);
+            //chitiethoaDonModel.HoaDon_ID = hoaDonModel.ID;
+            //foreach(var item in LstchitiethoaDonModel)
+            //{
+            //    item.HoaDon_ID = hoaDonModel.ID;
+            //    _context.Add(item);
+            //    await _context.SaveChangesAsync();
+            //}
+            HttpContext.Session.Remove("cart");
+            var url = Url.RouteUrl(new {area="", controller = "Pages",action="Index"});
+            return Redirect(url);
+            //}
+            //ViewData["User_ID"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", hoaDonModel.User_ID);
+            //return View(hoaDonModel);
         }
 
         // GET: Admin/HoaDon/Edit/5
