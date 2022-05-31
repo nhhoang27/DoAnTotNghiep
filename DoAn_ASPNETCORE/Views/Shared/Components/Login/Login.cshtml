@@ -4,24 +4,24 @@
 <div class="login">
        <div class="main-agileits">
            <div class="form-w3agile">
-               <h3>Login To Time Up Shop</h3>
+               <h3>Đăng nhập vào cửa hàng Time Up</h3>
                <form  method="post">
                    <div class="key">
                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                       <input type="text" asp-for="UserName" placeholder="Username">
+                       <input type="text" asp-for="UserName" placeholder="Tên đăng nhập">
                        <div class="clearfix"></div>
                    </div>
                    <div class="key">
                        <i class="fa fa-lock" aria-hidden="true"></i>
-                       <input type="password" asp-for="Password" placeholder="Password">
+                       <input type="password" asp-for="Password" placeholder="Mật khẩu">
                        <div class="clearfix"></div>
                    </div>
                    <input type="submit"  asp-action="Login">
                </form>
            </div>
            <div class="forg">
-               <a href="#" class="forg-left">Forgot Password</a>
-               <a asp-area="Admin" asp-controller="User" asp-action="Create class="forg-right">Register</a>
+               <a href="#" class="forg-left">Quên mật khẩu</a>
+               <a asp-area="Admin" asp-controller="User" asp-action="Create class="forg-right">Đăng ký</a>
                <div class="clearfix"></div>
            </div>
            <div id="fb-root">

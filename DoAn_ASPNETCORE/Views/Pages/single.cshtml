@@ -66,7 +66,7 @@
                 @*}*@
 
                 <div class="col-md-3 single-grid1">
-                    <h3>Recent Products</h3>
+                    <h3>Sản phẩm có thể bạn yêu thích<h3>
                     @await Component.InvokeAsync("Single", new { id = ViewBag.id })
 
                 </div>
@@ -78,7 +78,7 @@
     </div>
     <!--single-->
     <div class="container">
-        <h3 class="tittle1">Best Sellers</h3>
+        <h3 class="tittle1">Sản phẩm bán chạy</h3>
         <div class="arrivals-grids">
             @foreach (var item in ViewBag.BestSellers)
             {
@@ -97,10 +97,10 @@
                             </figure>
                         </div>
                         <div class="ribben">
-                            <p>NEW</p>
+                            <p>Mới</p>
                         </div>
                         <div class="ribben1">
-                            <p>SALE</p>
+                            <p>Giảm giá</p>
                         </div>
                         <div class="block">
                             <div class="starbox small ghosting"> </div>
@@ -109,7 +109,7 @@
                             <h6><a href="~/pages/single/@item.ID">@item.TenSP</a></h6>
                             <span class="size">@item.Size</span>
                             <p><del>@item.Gia VND</del><em class="item_price">@item.GiaMoi VND</em></p>
-                            <a href="/addcart/@item.ID" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                            <a href="/addcart/@item.ID" data-text="Add To Cart" class="my-cart-b item_add">Thêm vào giỏ hàng</a>
                         </div>
 
                     </div>

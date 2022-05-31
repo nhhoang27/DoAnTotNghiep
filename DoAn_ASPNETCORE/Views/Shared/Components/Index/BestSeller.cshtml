@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DoAn_ASPNETCORE.Areas.Admin.Models.SanPhamModel>
 <div class="new-arrivals-w3agile">
     <div class="container">
-        <h2 class="tittle">Best Seller</h2>
+        <h2 class="tittle">Sản phẩm bán chạy</h2>
         <div class="arrivals-grids">
             @foreach (var item in Model)
             {
@@ -20,10 +20,10 @@
                             </figure>
                         </div>
                         <div class="ribben">
-                            <p>NEW</p>
+                            <p>Mới</p>
                         </div>
                         <div class="ribben1">
-                            <p>SALE</p>
+                            <p>Giảm giá</p>
                         </div>
                         <div class="block">
                             <div class="starbox small ghosting"> </div>
@@ -33,7 +33,7 @@
                             <span class="size">@item.Size</span>
                             <p><del>@item.Gia VND</del><em class="item_price">@item.GiaMoi VND</em></p>
                             <a asp-route="addcart" 
-                   asp-route-productid="@item.ID"  data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                   asp-route-productid="@item.ID"  data-text="Add To Cart" class="my-cart-b item_add">Thêm vào giỏ</a>
                         </div>
 
                     </div>
