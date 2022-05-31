@@ -80,10 +80,19 @@ namespace DoAn_ASPNETCORE.Areas.Api
         [HttpPost]
         public async Task<ActionResult<HoaDonModel>> PostHoaDonModel(HoaDonModel hoaDonModel)
         {
-            _context.HoaDonModel.Add(hoaDonModel);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.HoaDonModel.Add(hoaDonModel);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetHoaDonModel", new { id = hoaDonModel.ID }, hoaDonModel);
+                return CreatedAtAction("GetHoaDonModel", new { id = hoaDonModel.ID }, hoaDonModel);
+            }
+            catch (Exception ex)
+            {
+                return null;
+                throw ex;
+            }
+            
         }
      
 

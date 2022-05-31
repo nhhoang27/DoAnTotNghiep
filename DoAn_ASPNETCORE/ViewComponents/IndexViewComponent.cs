@@ -36,7 +36,7 @@ namespace DoAn_ASPNETCORE.ViewComponents
         }
         private Task<List<SanPhamModel>> LaySanPham(string id)
         {
-            return db.SanPhamModel.Where(x => x.DanhMuc == id).Take(4).ToListAsync();
+            return db.SanPhamModel.Where(x => x.DanhMuc == id).ToListAsync();
         }
     }
 }

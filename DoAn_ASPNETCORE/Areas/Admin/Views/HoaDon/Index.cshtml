@@ -241,15 +241,31 @@
                         url: "/api/HoaDonAPI/PostHoaDonModel",
                         type: "POST",
                         contentType: "Application/json;charset-utf-8",
-                        data: JSON.stringify(insert),
-                        dataType: "json"
-                    }).done(function (reponse) {
-                        $("#AddModal").modal('hide');
-                        $("#successModal").modal('show');
-
-                    }).fail(function () {
-                        alert('Thất bại !');
+                        data: insert,
+                        //dataType: "json"
+                    }).then(reponse => {
+                        debugger
+                        if (!reponse) {
+                            $("#AddModal").modal('hide');
+                            $("#successModal").modal('show');
+                        }
+                        else {
+                            alert('Thất bại !');
+                        }
                     });
+                    //$.ajax({
+                    //    url: "../../api/HoaDonAPI/PostHoaDonModel",
+                    //    type: "POST",
+                    //    contentType: "Application/json;charset-utf-8",
+                    //    data: JSON.stringify(insert),
+                    //    dataType: "json"
+                    //}).done(function (reponse) {
+                    //    $("#AddModal").modal('hide');
+                    //    $("#successModal").modal('show');
+
+                    //}).fail(function () {
+                    //    alert('Thất bại !');
+                    //});
                 }
                 function getHoaDon(id) {
                     $.ajax({

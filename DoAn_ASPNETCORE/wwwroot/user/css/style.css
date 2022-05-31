@@ -566,6 +566,11 @@ h2.tittle {
 }
 .arrivals-grids {
     margin-top: 4em;
+    display: flex;
+    flex-wrap: wrap;
+}
+.arrival-grid{
+    margin-bottom:1em;
 }
 .grid-arr {
     border: 1px solid #E2E2E2;
@@ -574,6 +579,7 @@ h2.tittle {
     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     padding: 0em;
+    height:100%;
 }
 .grid-arr .grid-arrival figure {
   position: relative;
@@ -2782,9 +2788,11 @@ h3.tittle1, h3.tittle {
 .accessories-w3l span {
     font-size: 3em;
 }
-.caption,.arrivals-grids,.latest-grids,.product-w3agile,.product-agileinfo-grids,.mail-grids,.product-grids {
-    margin-top: 3em;
-}
+    .caption, .arrivals-grids, .latest-grids, .product-w3agile, .product-agileinfo-grids, .mail-grids, .product-grids {
+        margin-top: 3em;
+        display: flex;
+        flex-wrap: wrap;
+    }
 .ribben2 {
     top: 14%;
     width: 64%;
@@ -3113,9 +3121,11 @@ p.quote {
 .new-arrivals-w3agile, .product-agile, .latest-w3, .footer-w3l, .products-agileinfo, .typo-w3, .mail-w3ls, .single-wl3 {
     padding: 2em 0;
 }
-.caption,.arrivals-grids,.latest-grids,.product-w3agile,.product-agileinfo-grids,.mail-grids,.product-grids {
-    margin-top: 2em;
-}
+    .caption, .arrivals-grids, .latest-grids, .product-w3agile, .product-agileinfo-grids, .mail-grids, .product-grids {
+        margin-top: 2em;
+        display: flex;
+        flex-wrap: wrap;
+    }
 h2.tittle {
     font-size: 2.3em;
 }
