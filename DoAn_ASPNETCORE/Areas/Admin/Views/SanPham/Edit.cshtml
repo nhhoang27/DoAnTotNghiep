@@ -56,19 +56,18 @@
                                 <input type="file" name="ful1" id="ful1" class="custom-file-input" />
                                 <label class="custom-file-label" for="ful1">Choose File</label>
                             </div>
-
                             <div class="form-group">
                                 @*Hien thi hinh anh*@
                                 <img id="imgPre1" src="~/images/@Model.Image_List?@(new Random().Next(1,1000).ToString())" alt="no img" class="img-thumbnail" />
                             </div>
                             <div class="form-group">
                                 <label asp-for="MoTaNgan" class="control-label"></label>
-                                <textarea id="editor" asp-for="MoTaNgan"></textarea>
+                                <input asp-for="MoTaNgan" class="form-control" />
                                 <span asp-validation-for="MoTaNgan" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="MoTa" class="control-label"></label>
-                                <textarea id="editor1" asp-for="MoTa"></textarea>
+                                <input asp-for="MoTa" class="form-control" />
                                 <span asp-validation-for="MoTa" class="text-danger"></span>
                             </div>
 
@@ -105,16 +104,17 @@
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
             <script>
 
-                ClassicEditor
-                    .create(document.querySelector('#editor'))
-                    .catch(error => {
-                        console.error(error);
-                    });
-                ClassicEditor
-                    .create(document.querySelector('#editor1'))
-                    .catch(error => {
-                        console.error(error);
-                    });
+                //ClassicEditor
+                //    .create(document.querySelector('#editor'))
+                //    .catch(error => {
+                //        console.error(error);
+                //    });
+                //ClassicEditor
+                //    .create(document.querySelector('#editor1'))
+                //    .catch(error => {
+
+                //        console.error(error);
+                //    });
             </script>
             <script>
                 function readURL(input, idImg) {
