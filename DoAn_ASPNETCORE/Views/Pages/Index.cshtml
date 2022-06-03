@@ -44,13 +44,13 @@
 
     <!--banner-bottom-->
     <!--new-arrivals-->
-    @await Component.InvokeAsync("Index", new { id = "DM1" })
+    @await Component.InvokeAsync("Index", new { id = "DM1", page = @ViewData["pageNewProduct"] })
     <!--new-arrivals-->
     <!--accessories-->
     <!--Products-->
-    @await Component.InvokeAsync("Index", new { id = "DM2" })
+    @await Component.InvokeAsync("Index", new { id = "DM2", page = @ViewData["pageLastProduct"] })
     <!--Products-->
-    @await Component.InvokeAsync("Index", new { id = "DM3" })
+    @await Component.InvokeAsync("Index", new { id = "DM3", page = @ViewData["pageBestSeller"] })
     <!--new-arrivals-->
 </div>
 <!--content-->

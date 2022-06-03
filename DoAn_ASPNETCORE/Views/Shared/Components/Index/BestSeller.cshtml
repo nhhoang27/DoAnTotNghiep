@@ -1,4 +1,10 @@
-﻿@model IEnumerable<DoAn_ASPNETCORE.Areas.Admin.Models.SanPhamModel>
+﻿@model PagedList.IPagedList<DoAn_ASPNETCORE.Areas.Admin.Models.SanPhamModel>
+@using PagedList.Mvc;
+<style>
+    .btn_paging{
+        display:inline-block;
+    }
+</style>
 <div class="new-arrivals-w3agile">
     <div class="container">
         <h2 class="tittle">Best Seller</h2>
@@ -41,6 +47,33 @@
 
             }
             <div class="clearfix"></div>
+        </div>
+        <div>
+            <form class="btn_paging" action="/Pages/Index" method="post">
+                <input type="hidden" name="pageNew" value="1" />
+                <input type="hidden" name="pageBest" value="1" />
+                <input type="hidden" name="pageLast" value="1" />
+                <button type="submit">First</button>
+            </form>
+            <form class="btn_paging" action="/Pages/Index" method="post">
+                <input type="hidden" name="pageNew" value="1" />
+                <input type="hidden" name="pageBest" value="@((Int32)ViewBag.pageBestSeller == 1 ? 1 : (Int32)ViewBag.pageBestSeller -1)" />
+                <input type="hidden" name="pageLast" value="1" />
+                <button type="submit">Pre</button>
+            </form>
+            <input type="text" style="text-align:center;" value="Trang @((Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)) / @(Model.PageCount.ToString())"/>
+            <form class="btn_paging" action="/Pages/Index" method="post">
+                <input type="hidden" name="pageNew" value="1" />
+                <input type="hidden" name="pageBest" value="@((Int32)ViewBag.pageBestSeller == (Int32)Model.PageCount ? (Int32)Model.PageCount : (Int32)ViewBag.pageBestSeller + 1)" />
+                <input type="hidden" name="pageLast" value="1" />
+                <button type="submit">Next</button>
+            </form>
+            <form class="btn_paging" action="/Pages/Index" method="post">
+                <input type="hidden" name="pageNew" value="1" />
+                <input type="hidden" name="pageBest" value="@((Int32)Model.PageCount)" />
+                <input type="hidden" name="pageLast" value="1" />
+                <button type="submit">Last</button>
+            </form>
         </div>
     </div>
 </div>

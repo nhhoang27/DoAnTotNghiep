@@ -24,11 +24,46 @@ namespace DoAn_ASPNETCORE.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+
+        //    ViewBag.Username = HttpContext.Session.GetString("username");
+            
+        //    var visitors = 0;
+        //    if (System.IO.File.Exists("visitors.txt"))
+        //    {
+        //        string noOfVisitors = System.IO.File.ReadAllText("visitors.txt");
+        //        visitors = Int32.Parse(noOfVisitors);
+        //    }
+        //    ++visitors;
+        //    var visit_text = (visitors == 1) ? " view" : " views";
+        //    System.IO.File.WriteAllText("visitors.txt", visitors.ToString());
+
+        //    ViewData["visitors"] = visitors;
+        //    ViewData["visitors_txt"] = visit_text;
+        //    ViewData["pageBestSeller"] = 1;
+        //    ViewData["pageNewProduct"] = 1;
+        //    ViewData["pageLastProduct"] = 1;
+        //    var options = new PusherOptions();
+        //    options.Cluster = "PUSHER_APP_CLUSTER";
+
+        //    var pusher = new Pusher(
+        //    "PUSHER_APP_ID",
+        //    "PUSHER_APP_KEY",
+        //    "PUSHER_APP_SECRET", options);
+
+        //    pusher.TriggerAsync(
+        //    "general",
+        //    "newVisit",
+        //    new { visits = visitors.ToString(), message = visit_text });
+
+        //    return View();
+        //}
+        public async Task<IActionResult> Index(int? pageNew, int? pageBest, int? pageLast)
         {
 
             ViewBag.Username = HttpContext.Session.GetString("username");
-            
+
             var visitors = 0;
             if (System.IO.File.Exists("visitors.txt"))
             {
@@ -41,6 +76,12 @@ namespace DoAn_ASPNETCORE.Controllers
 
             ViewData["visitors"] = visitors;
             ViewData["visitors_txt"] = visit_text;
+            //ViewData["pageBestSeller"] = pageBest != null ? pageBest : 1;
+            //ViewData["pageNewProduct"] = pageNew != null ? pageNew : 1;
+            //ViewData["pageLastProduct"] = pageLast != null ? pageLast : 1;
+            ViewBag.pageBestSeller = pageBest != null ? pageBest : 1;
+            ViewBag.pageNewProduct = pageNew != null ? pageNew : 1;
+            ViewBag.pageLastProduct = pageLast != null ? pageLast : 1;
             var options = new PusherOptions();
             options.Cluster = "PUSHER_APP_CLUSTER";
 
