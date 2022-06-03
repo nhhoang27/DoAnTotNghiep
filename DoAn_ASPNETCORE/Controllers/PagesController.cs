@@ -88,13 +88,14 @@ namespace DoAn_ASPNETCORE.Controllers
            
             return View();
         }
-        public IActionResult Products1(int? id)
+        public IActionResult Products1(int? id, int? page)
         {
             var dsDongHo = _context.SanPhamModel.Where(x => x.MaLoai == id).ToList();
             ViewBag.dsDongHo = dsDongHo;
             ViewBag.id = id;
             ViewBag.Username = HttpContext.Session.GetString("username");
-           
+            ViewBag.Page = page ?? 1;
+
             return View();
         }
         //public IActionResult Login()

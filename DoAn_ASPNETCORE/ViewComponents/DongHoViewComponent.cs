@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PagedList;
 
 namespace DoAn_ASPNETCORE.ViewComponents
 {
@@ -18,13 +19,13 @@ namespace DoAn_ASPNETCORE.ViewComponents
             db = context;
         }
         public async Task<IViewComponentResult> InvokeAsync(
-        int id)
+        int id, int page)
         {
             string MyView = "DongHo";
 
             var items = await LaySanPham(id);
 
-            return View(MyView, items);
+            return View(MyView, items.ToPagedList(page, 12));
         }
         private Task<List<SanPhamModel>> LaySanPham(int id)
         {
