@@ -9,6 +9,11 @@
 
     </script>
 }
+<style>
+    .modal-dialog{
+        max-width:900px;
+    }
+</style>
 <div id="successModal" class="modal fade">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
@@ -139,6 +144,33 @@
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.TrangThai)</span>
                     </div>
                 </form>
+                <h4>Chi tiết hóa đơn</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                ID Hóa đơn
+                            </th>
+                            <th>
+                                Tên sản phẩm
+                            </th>
+                            <th>
+                                Số lượng
+                            </th>
+                            <th>
+                                Giá
+                            </th>
+                            <th>Khuyến mãi</th>
+                            <th>Trạng thái</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody id="chi_tiet_hoa_don">
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
@@ -156,7 +188,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <p>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Thêm</button>
                         </p>
@@ -224,7 +256,7 @@
                     });
 
 
-                }
+                };
                 function addHoaDon() {
                     var insert = {};
                     insert.User_ID = parseInt($("#userid").val());
@@ -244,7 +276,6 @@
                         data: insert,
                         //dataType: "json"
                     }).then(reponse => {
-                        debugger
                         if (!reponse) {
                             $("#AddModal").modal('hide');
                             $("#successModal").modal('show');
@@ -274,12 +305,27 @@
                         contentType: "Application/json;charset-utf-8",
                         dataType: "json"
                     }).done(function (reponse) {
-                        $("#edit_id").val(reponse.id);
-                        $("#edit_userid").val(reponse.user_ID);
-                        $("#edit_hoten").val(reponse.hoTen);
-                        $("#edit_sdt").val(reponse.sdt);
-                        $("#edit_thanhtien").val(reponse.thanhTien);
-                        $("#edit_trangthai").val(reponse.trangThai);
+                        var dataHD = reponse.dataHoaDon;
+                        var dataDetail = reponse.lstChiTietHoaDon;
+                        $("#edit_id").val(dataHD.id);
+                        $("#edit_userid").val(dataHD.user_ID);
+                        $("#edit_hoten").val(dataHD.hoTen);
+                        $("#edit_sdt").val(dataHD.sdt);
+                        $("#edit_thanhtien").val(dataHD.thanhTien);
+                        $("#edit_trangthai").val(dataHD.trangThai);
+                        var newHtml = "";
+                        $.each(dataDetail, function (index, hoaDon) {
+                            newHtml += '<tr><td>' + hoaDon.id + '</td>';
+                            newHtml += '<td>' + hoaDon.hoaDon_ID + '</td>';
+                            newHtml += '<td>' + hoaDon.tenSP + '</td>';
+                            newHtml += '<td>' + hoaDon.soLuong + '</td>';
+                            newHtml += '<td>' + hoaDon.gia + '</td>';
+                            newHtml += '<td>' + hoaDon.khuyenMai + '</td>';
+                            newHtml += '<td>' + hoaDon.trangThai + '</td>';
+                            newHtml += '<td>' + hoaDon.thanhTien + '</td></tr>';
+                            
+                        })
+                        $('#chi_tiet_hoa_don').html(newHtml);
                     }).fail(function () {
                         alert('Thất bại !');
                     });

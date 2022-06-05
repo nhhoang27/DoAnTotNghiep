@@ -8,6 +8,9 @@
     .btn_paging {
         display: inline-block;
     }
+    .img-thumbnail{
+        max-width:100px;
+    }
 </style>
 <div class="wrapper">
     @await Html.PartialAsync("/Areas/Admin/Views/Shared/SideBar.cshtml")
@@ -19,7 +22,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-12">
 
                         <p>
                             <a asp-area="Admin" asp-controller="SanPham" asp-action="Create">Create New</a>
