@@ -4,24 +4,24 @@
     <div class="header-top">
         <div class="container">
             <div class="top-left">
-                <a href="#"> Help  <i class="glyphicon glyphicon-phone" aria-hidden="true"></i>Nguyễn Huy Hoàng</a>
+                <a href="#"> Hỗ trợ  <i class="glyphicon glyphicon-phone" aria-hidden="true"></i>Nguyễn Huy Hoàng</a>
             </div>
             <div class="top-right">
                 <ul>
-                    <li><a href="~/pages/checkout">Checkout</a></li>
+                    <li><a href="~/pages/checkout">Thanh toán</a></li>
                    
                     @if (string.IsNullOrEmpty(ViewBag.Username))
                     {
-                        <li><a href="~/login/index">Login</a></li>
+                        <li><a href="~/login/index">Đăng nhập</a></li>
 
                     }
                     else
                     {
                         <li><a href="/Admin/user/index">@ViewBag.Username</a></li>
-                        <li><a onclick="DeleteSession()" href="javascript:">Log out</a></li>
+                        <li><a onclick="DeleteSession()" href="javascript:">Đăng xuất</a></li>
                     }
 
-                    <li><a asp-area="Admin" asp-controller="User" asp-action="Create"> Create Account </a></li>
+                    <li><a asp-area="Admin" asp-controller="User" asp-action="Create"> Đăng ký </a></li>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -31,7 +31,7 @@
         <div class="container">
             <div class="logo-nav">
                 <div class="logo-nav-left">
-                    <h1><a href="~/pages/index">TimeUp <span>Good cheap price </span></a></h1>
+                    <h1><a href="~/pages/index">Time Up<span>Good cheap price </span></a></h1>
                 </div>
                 <div class="logo-nav-left1">
                     <nav class="navbar navbar-default">
@@ -46,38 +46,15 @@
                         </div>
                         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="~/pages/index" class="act">HOME</a></li>
-                                <!-- Mega Menu -->
-                                @*<li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">SMARTPHONE<b class="caret"></b></a>
-                                    <ul class="dropdown-menu multi-column columns-3">
-                                        <div class="row">
-                                            <div class="col-sm-3  multi-gd-img">
-                                                <ul class="multi-column-dropdown">
-                                                    <h6>MENU</h6>
-                                                    <li><a href="~/pages/products/1">SamSung</a></li>
-                                                    <li><a href="~/pages/products/2">IPhone</a></li>
-
-                                                </ul>
-                                            </div>
-
-                                            <div class="col-sm-3  multi-gd-img">
-                                                <a href="~/pages/products"><img src="~/images/ss1.png" alt=" " /></a>
-                                            </div>
-                                            <div class="col-sm-3  multi-gd-img">
-                                                <a href="~/pages/products"><img src="~/images/ip2.png" alt=" " /></a>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </ul>
-                                </li>*@
+                                <li class="active"><a href="~/pages/index" class="act">Trang chủ</a></li>
+                                
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Casio<b class="caret"></b></a>
                                     <ul class="dropdown-menu multi-column columns-3" style="min-width:196px;">
                                         <div class="row">
                                             <div class="multi-gd-img">
                                                 <ul class="multi-column-dropdown">
-                                                    <h6>MENU</h6>
+                                                    <h6>Danh mục</h6>
                                                     <li><a href="~/pages/products1/5">Đồng hồ Nam</a></li>
                                                     <li><a href="~/pages/products1/10">Đồng hồ Nữ</a></li>
                                                     <li><a href="~/pages/products1/11">Phụ kiện</a></li>
@@ -95,7 +72,7 @@
                                         </div>
                                     </ul>
                                 </li>
-                                <li><a href="~/pages/mail">Mail Us</a></li>
+                                <li><a href="~/pages/mail">Liên hệ</a></li>
                             </ul>
                         </div>
                     </nav>

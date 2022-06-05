@@ -75,7 +75,7 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,TenSP,MaLoai,DanhMuc,Gia,GiaMoi,Image,Image_List,Size,SoLuong,NgayLap,TrangThai")] SanPhamModel sanPhamModel, IFormFile ful, IFormFile ful1)
+        public async Task<IActionResult> Create([Bind("ID,TenSP,MaLoai,DanhMuc,Gia,GiaMoi,Image,Image_List,MoTaNgan,MoTa,Size,SoLuong,NgayLap,TrangThai")] SanPhamModel sanPhamModel, IFormFile ful, IFormFile ful1)
         {
             if (ModelState.IsValid)
             {
@@ -133,17 +133,32 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,TenSP,MaLoai,DanhMuc,Gia,GiaMoi,Image,Image_List,Size,SoLuong,NgayLap,TrangThai")] SanPhamModel sanPhamModel, IFormFile ful, IFormFile ful1)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,TenSP,MaLoai,DanhMuc,Gia,GiaMoi,Image,Image_List,MoTaNgan,MoTa,Size,SoLuong,NgayLap,TrangThai")] SanPhamModel sanPhamModel, IFormFile ful, IFormFile ful1)
         {
             if (id != sanPhamModel.ID)
             {
                 return NotFound();
             }
-
+            var sp = _context.SanPhamModel.FirstOrDefault(x => x.ID == sanPhamModel.ID);
             if (ModelState.IsValid)
             {
                 try
                 {
+                    
+                    sp.TenSP = sanPhamModel.TenSP;
+                    sp.MaLoai = sanPhamModel.MaLoai;
+                    sp.Loai = sanPhamModel.Loai;
+                    sp.DanhMuc = sanPhamModel.DanhMuc;
+                    sp.DMuc = sanPhamModel.DMuc;
+                    sp.Gia = sanPhamModel.Gia;
+                    sp.GiaMoi = sanPhamModel.GiaMoi;
+                    sp.Size = sanPhamModel.Size;
+                    sp.SoLuong = sanPhamModel.SoLuong;
+                    sp.MoTaNgan = sanPhamModel.MoTaNgan;
+                    sp.MoTa = sanPhamModel.MoTa;
+                    sp.NgayLap = sanPhamModel.NgayLap;
+                    sp.TrangThai = sanPhamModel.TrangThai;
+
                     if (ful != null)
                     {
                         //Doi ten anh moi thanh ID.jpg
@@ -167,6 +182,10 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
                         //Gan lai anh moi
                         sanPhamModel.Image = s;
                     }
+                    else
+                    {
+                        sanPhamModel.Image = sp.Image;
+                    }
                     if (ful1 != null)
                     {
                         //Doi ten anh moi thanh ID.jpg
@@ -189,7 +208,11 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
                         //Gan lai anh moi
                         sanPhamModel.Image_List = s1;
                     }
-                    _context.Update(sanPhamModel);
+                    else
+                    {
+                        sanPhamModel.Image_List = sp.Image_List;
+                    }
+                    _context.Update(sp);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -206,7 +229,7 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["MaLoai"] = new SelectList(_context.Set<LoaiSanPhamModel>(), "ID", "ID", sanPhamModel.MaLoai);
-            return View(sanPhamModel);
+            return View(sp);
         }
 
         // GET: Admin/SanPham/Delete/5

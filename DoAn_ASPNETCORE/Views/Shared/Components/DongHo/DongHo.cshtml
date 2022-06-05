@@ -7,8 +7,9 @@
     .btn_paging {
         display: inline-block;
     }
-    .product-tab-grid{
-        margin-bottom:2em;
+
+    .product-tab-grid {
+        margin-bottom: 2em;
     }
 </style>
 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
@@ -42,73 +43,74 @@
                                     <span class="size" style="height:50px;">@item.Size </span>
                                     <p style="height:50px;"><del>@item.Gia.ToString("C0", CultureInfo.CurrentCulture)</del><em class="item_price">@item.GiaMoi.ToString("C0", CultureInfo.CurrentCulture)</em></p>
                                     <a asp-route="addcart"
-                                       asp-route-productid="@item.ID" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                                       asp-route-productid="@item.ID" data-text="Add To Cart" class="my-cart-b item_add">Thêm vào giỏ</a>
                                 </div>
                             </div>
                         </div>
                     }
-
-
-                    <div class="clearfix"></div>
                 </div>
 
-                <div>
-                    <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
-                        
-                        <input type="hidden" name="id" value="@ViewBag.id" />
-                        <button type="submit">First</button>
-                    </form>
-                    <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
-                        
-                        <input type="hidden" name="page" value="@((Int32)ViewBag.page == 1 ? 1 : (Int32)ViewBag.page -1)" />
-                        <button type="submit">Pre</button>
-                    </form>
-                    <input type="text" style="text-align:center;" value="Trang @((Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)) / @(Model.PageCount.ToString())" />
-                    <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
-                        
-                        <input type="hidden" name="page" value="@((Int32)ViewBag.page == (Int32)Model.PageCount ? (Int32)Model.PageCount : (Int32)ViewBag.page + 1)" />
-                        <button type="submit">Next</button>
-                    </form>
-                    <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
-                        
-                        <input type="hidden" name="pageNew" value="@((Int32)Model.PageCount)" />
-                        <button type="submit">Last</button>
-                    </form>
-                </div>
 
+                <div class="clearfix"></div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                <div class="product-tab1">
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-md-4 product-tab1-grid">
-                            <div class="grid-arr">
-                                <div class="grid-arrival">
-                                    <figure>
-                                        <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
-                                            <div class="grid-img">
-                                                <img src="~/images/@item.Image" class="img-responsive" alt="">
-                                            </div>
 
-                                        </a>
-                                    </figure>
-                                </div>
+            <div>
+                <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
+
+                    <input type="hidden" name="id" value="@ViewBag.id" />
+                    <button type="submit">Trang đầu</button>
+                </form>
+                <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
+
+                    <input type="hidden" name="page" value="@((Int32)ViewBag.page == 1 ? 1 : (Int32)ViewBag.page -1)" />
+                    <button type="submit">Trước</button>
+                </form>
+                <input type="text" style="text-align:center;" value="Trang @((Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)) / @(Model.PageCount.ToString())" />
+                <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
+
+                    <input type="hidden" name="page" value="@((Int32)ViewBag.page == (Int32)Model.PageCount ? (Int32)Model.PageCount : (Int32)ViewBag.page + 1)" />
+                    <button type="submit">Sau</button>
+                </form>
+                <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
+
+                    <input type="hidden" name="pageNew" value="@((Int32)Model.PageCount)" />
+                    <button type="submit">Trang cuối</button>
+                </form>
+            </div>
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+            <div class="product-tab1">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 product-tab1-grid">
+                        <div class="grid-arr">
+                            <div class="grid-arrival">
+                                <figure>
+                                    <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
+                                        <div class="grid-img">
+                                            <img src="~/images/@item.Image" class="img-responsive" alt="">
+                                        </div>
+
+                                    </a>
+                                </figure>
                             </div>
                         </div>
-                        <div class="col-md-8 product-tab1-grid1 simpleCart_shelfItem">
-                            <div class="block">
-                                <div class="starbox small ghosting"> </div>
-                            </div>
-                            <div class="women">
-                                <h6><a href="~/pages/single/@item.ID">@item.TenSP</a></h6>
-                                <span class="size">@item.Size</span>
-                                <p><del>@item.Gia.ToString("C", CultureInfo.CurrentCulture)</del><em class="item_price">@item.GiaMoi.ToString("C", CultureInfo.CurrentCulture)</em></p>
-                                <a href="/addcart/@item.ID" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
-                            </div>
+                    </div>
+                    <div class="col-md-8 product-tab1-grid1 simpleCart_shelfItem">
+                        <div class="block">
+                            <div class="starbox small ghosting"> </div>
                         </div>
-                        <div class="clearfix"></div>
-                    }
-                </div>
+                        <div class="women">
+                            <h6><a href="~/pages/single/@item.ID">@item.TenSP</a></h6>
+                            <span class="size">@item.Size</span>
+                            <p><del>@item.Gia.ToString("C", CultureInfo.CurrentCulture)</del><em class="item_price">@item.GiaMoi.ToString("C", CultureInfo.CurrentCulture)</em></p>
+                            <a href="/addcart/@item.ID" data-text="Add To Cart" class="my-cart-b item_add">Thêm vào giỏ</a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                }
             </div>
         </div>
+</div>
 </div>

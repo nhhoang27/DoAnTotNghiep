@@ -136,7 +136,6 @@ namespace DoAn_ASPNETCORE.Controllers
             ViewBag.id = id;
             ViewBag.Username = HttpContext.Session.GetString("username");
             ViewBag.Page = page ?? 1;
-           
             return View();
         }
         //public IActionResult Login()
