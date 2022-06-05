@@ -57,7 +57,7 @@
             <div>
                 <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
 
-                    <input type="hidden" name="id" value="@ViewBag.id" />
+                    <input type="hidden" name="page" value="1" />
                     <button type="submit">Trang đầu</button>
                 </form>
                 <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
@@ -73,7 +73,7 @@
                 </form>
                 <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
 
-                    <input type="hidden" name="pageNew" value="@((Int32)Model.PageCount)" />
+                    <input type="hidden" name="page" value="@((Int32)Model.PageCount)" />
                     <button type="submit">Trang cuối</button>
                 </form>
             </div>
