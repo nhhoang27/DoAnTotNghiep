@@ -23,11 +23,14 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
         }
 
         // GET: Admin/SanPham
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, int? page)
         {
             IQueryable<string> genreQuery = from m in _context.SanPhamModel select m.TenSP;
             var sanphams = from m in _context.SanPhamModel
                            select m;
+            int pageCount = sanphams.Count() / 10;
+            ViewBag.PageCount = pageCount;
+            ViewBag.CurrentPage = page ?? 1;
             if (!string.IsNullOrEmpty(searchString))
             {
                 sanphams = sanphams.Where(s => s.TenSP.Contains(searchString));
@@ -36,7 +39,7 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
             var SanPhamViewModel = new SanPhamViewModel
             {
                 SPs = new SelectList(await genreQuery.Distinct().ToListAsync()),
-                SanPhams = await sanphams.ToListAsync()
+                SanPhams = await sanphams.Skip((page ?? 1 - 1) * 10).Take(10).ToListAsync()
 
             };
             return View(SanPhamViewModel);

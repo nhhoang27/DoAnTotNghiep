@@ -4,6 +4,11 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .btn_paging {
+        display: inline-block;
+    }
+</style>
 <div class="wrapper">
     @await Html.PartialAsync("/Areas/Admin/Views/Shared/SideBar.cshtml")
     <div class="main-panel">
@@ -111,10 +116,35 @@
                                 }
                             </tbody>
                         </table>
+                        <div>
+                            <form class="btn_paging" action="/admin/SanPham" method="post">
+
+                                <input type="hidden" name="page" value="1" />
+                                <button type="submit">Trang đầu</button>
+                            </form>
+                            <form class="btn_paging" action="/admin/SanPham" method="post">
+
+                                <input type="hidden" name="page" value="@((Int32)ViewBag.CurrentPage == 1 ? 1 : (Int32)ViewBag.CurrentPage -1)" />
+                                <button type="submit">Trước</button>
+                            </form>
+                            <input type="text" style="text-align:center;" value="Trang @(ViewBag.CurrentPage) / @(ViewBag.PageCount.ToString())" />
+                            <form class="btn_paging" action="/admin/SanPham" method="post">
+
+                                <input type="hidden" name="page" value="@((Int32)ViewBag.CurrentPage == (Int32)ViewBag.PageCount ? (Int32)ViewBag.PageCount : (Int32)ViewBag.CurrentPage + 1)" />
+                                <button type="submit">Sau</button>
+                            </form>
+                            <form class="btn_paging" action="/admin/SanPham" method="post">
+
+                                <input type="hidden" name="page" value="@((Int32)ViewBag.PageCount)" />
+                                <button type="submit">Trang cuối</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+    </div>
         <script>
             function DeleteSession() {
                 $.ajax({
