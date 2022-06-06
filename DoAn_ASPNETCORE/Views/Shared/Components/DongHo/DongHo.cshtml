@@ -13,11 +13,11 @@
     }
 </style>
 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-    <ul id="myTab" class="nav1 nav1-tabs left-tab" role="tablist">
-        <ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
+
+        @*<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
             <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true"><img src="~/images/menu1.png"></a></li>
             <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile"><img src="~/images/menu.png"></a></li>
-        </ul>
+        </ul>*@
         <div id="myTabContent" class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                 <div class="product-tab" style="display:flex;flex-wrap:wrap;">
@@ -57,7 +57,7 @@
             <div>
                 <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
 
-                    <input type="hidden" name="id" value="@ViewBag.id" />
+                    <input type="hidden" name="page" value="1" />
                     <button type="submit">Trang đầu</button>
                 </form>
                 <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
@@ -73,13 +73,13 @@
                 </form>
                 <form class="btn_paging" action="/Pages/products1/@ViewBag.id" method="post">
 
-                    <input type="hidden" name="pageNew" value="@((Int32)Model.PageCount)" />
+                    <input type="hidden" name="page" value="@((Int32)Model.PageCount)" />
                     <button type="submit">Trang cuối</button>
                 </form>
             </div>
 
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+        @*<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
             <div class="product-tab1">
                 @foreach (var item in Model)
                 {
@@ -111,6 +111,5 @@
                     <div class="clearfix"></div>
                 }
             </div>
-        </div>
-</div>
+        </div>*@
 </div>
