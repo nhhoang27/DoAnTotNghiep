@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,12 +7,11 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Models
 {
     public partial class ChiTietHoaDonModel
     {
+    }
+    public class ChiTietHoaDonModelDTO
+    {
         public int ID { get; set; }
         public int HoaDon_ID { get; set; }
-        [ForeignKey("HoaDon_ID")]
-
-        public virtual HoaDonModel HoaDon { set; get; }
-        
         public string TenSP { get; set; }
         public string SoLuong { get; set; }
         public string Gia { get; set; }

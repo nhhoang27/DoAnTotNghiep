@@ -8,6 +8,10 @@
     .btn_paging {
         display: inline-block;
     }
+
+    .img-thumbnail {
+        max-width: 100px;
+    }
 </style>
 <div class="wrapper">
     @await Html.PartialAsync("/Areas/Admin/Views/Shared/SideBar.cshtml")
@@ -19,7 +23,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-12">
 
                         <p>
                             <a asp-area="Admin" asp-controller="SanPham" asp-action="Create">Create New</a>
@@ -116,49 +120,24 @@
                                 }
                             </tbody>
                         </table>
-                        <div>
-                            <form class="btn_paging" action="/admin/SanPham" method="post">
-
-                                <input type="hidden" name="page" value="1" />
-                                <button type="submit">Trang đầu</button>
-                            </form>
-                            <form class="btn_paging" action="/admin/SanPham" method="post">
-
-                                <input type="hidden" name="page" value="@((Int32)ViewBag.CurrentPage == 1 ? 1 : (Int32)ViewBag.CurrentPage -1)" />
-                                <button type="submit">Trước</button>
-                            </form>
-                            <input type="text" style="text-align:center;" value="Trang @(ViewBag.CurrentPage) / @(ViewBag.PageCount.ToString())" />
-                            <form class="btn_paging" action="/admin/SanPham" method="post">
-
-                                <input type="hidden" name="page" value="@((Int32)ViewBag.CurrentPage == (Int32)ViewBag.PageCount ? (Int32)ViewBag.PageCount : (Int32)ViewBag.CurrentPage + 1)" />
-                                <button type="submit">Sau</button>
-                            </form>
-                            <form class="btn_paging" action="/admin/SanPham" method="post">
-
-                                <input type="hidden" name="page" value="@((Int32)ViewBag.PageCount)" />
-                                <button type="submit">Trang cuối</button>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<script>
-    function DeleteSession() {
-        $.ajax({
-            url: "/Login/LogOut",
-            type: "POST",
-            success: function (data) {
-                if (data.success === "True") {
-                    alert("Log out thành công...");
-                    location.href = '/'
-                }
-            },
-            error: function (data) {
-                console.log(data);
+        <script>
+            function DeleteSession() {
+                $.ajax({
+                    url: "/Login/LogOut",
+                    type: "POST",
+                    success: function (data) {
+                        if (data.success === "True") {
+                            alert("Log out thành công...");
+                            location.href = '/'
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                })
             }
-        })
-    }
-</script>
+        </script>

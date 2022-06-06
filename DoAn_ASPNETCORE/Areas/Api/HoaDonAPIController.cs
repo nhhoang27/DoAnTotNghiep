@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DoAn_ASPNETCORE.Areas.Admin.Data;
 using DoAn_ASPNETCORE.Areas.Admin.Models;
+using Newtonsoft.Json;
 
 namespace DoAn_ASPNETCORE.Areas.Api
 {
@@ -30,16 +31,38 @@ namespace DoAn_ASPNETCORE.Areas.Api
 
         // GET: api/HoaDonAPI/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<HoaDonModel>> GetHoaDonModel(int id)
+        public async Task<ActionResult<ResultChiTietHoaDon>> GetHoaDonModel(int id)
         {
-            var hoaDonModel = await _context.HoaDonModel.FindAsync(id);
+            var hoaDonModel = await _context.HoaDonModel.Where(x => x.ID == id).Select(x => new HoaDonModelDTO
+            {
+                ID = x.ID,
+                HoTen = x.HoTen,
+                Sdt = x.Sdt,
+                ThanhTien = x.ThanhTien,
+                TrangThai = x.TrangThai,
+                User_ID = x.User_ID
+            }).FirstOrDefaultAsync();
 
             if (hoaDonModel == null)
             {
                 return NotFound();
             }
-
-            return hoaDonModel;
+            var cthd = await _context.ChiTietHoaDonModel.Where(x => x.HoaDon_ID == id).Select(x => new ChiTietHoaDonModelDTO
+            {
+                ID = x.ID,
+                HoaDon_ID = x.HoaDon_ID,
+                Gia = x.Gia,
+                KhuyenMai = x.KhuyenMai,
+                SoLuong = x.SoLuong,
+                TenSP = x.TenSP,
+                ThanhTien = x.ThanhTien,
+                TrangThai = x.TrangThai
+            }).ToListAsync();
+            var result = new ResultChiTietHoaDon();
+            result.DataHoaDon = hoaDonModel;
+            result.LstChiTietHoaDon = cthd;
+            //hoaDonModel.lstCTHD = await _context.ChiTietHoaDonModel.Where(x => x.HoaDon_ID == id).ToListAsync();
+            return result;
         }
 
         // PUT: api/HoaDonAPI/5
