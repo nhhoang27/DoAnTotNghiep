@@ -1,4 +1,36 @@
 ﻿<!--content-->
+<style>
+    .img_btn {
+        max-width: 100px;
+    }
+
+    .btn_changeImg {
+        width: 150px;
+        height: 150px;
+        border: solid 1px black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .box_btn_img {
+        margin-top: 2em;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .slides {
+        list-style: none !important;
+    }
+
+    .btn_img_choosed {
+        border: 1px solid red;
+        display: flex;
+        box-shadow: 0 5px 30px rgb(0 0 0 / 30%);
+    }
+</style>
 <div class="content">
     <!--single-->
     <div class="single-wl3">
@@ -11,10 +43,32 @@
                         <div class="single-left">
                             <div class="flexslider">
                                 <ul class="slides">
-                                    <li data-thumb="images/si.jpg">
-                                        <div class="thumb-image"> <img src="~/images/@ViewBag.SanPham.Image" data-imagezoom="true" class="img-responsive"> </div>
-                                    </li>
+                                    <script>
+                                        @*var img_main = '~/images/'+@ViewBag.SanPham.Image;
+                                        var img_lst = '~/images/' +@ViewBag.SanPham.Image_List;*@
+                                        function ChooseImageMain() {
+                                            $('.img_main').removeClass('hidden');
+                                            $('.img_lst').addClass('hidden');
+                                            $('.btn_main').addClass('btn_img_choosed');
+                                            $('.btn_list').removeClass('btn_img_choosed');
+                                        }
+                                        function ChooseImageList() {
+                                            $('.img_main').addClass('hidden');
+                                            $('.img_lst').removeClass('hidden');
+                                            $('.btn_main').removeClass('btn_img_choosed');
+                                            $('.btn_list').addClass('btn_img_choosed');
+                                        }
+                                    </script>
+                                    <li data-thumb="images/si.jpg" class="image_main">
+                                        <div class="thumb-image">
+                                            <img src="~/images/@ViewBag.SanPham.Image" data-imagezoom="true" class="img-responsive img_main">
+                                            <img src="~/images/@ViewBag.SanPham.Image_List" data-imagezoom="true" class="img-responsive img_lst hidden">
+                                        </div>
                                 </ul>
+                            </div>
+                            <div class="box_btn_img">
+                                <div class="btn_changeImg btn_main btn_img_choosed" onclick="ChooseImageMain()"><img src="~/images/@ViewBag.SanPham.Image" alt="Alternate Text" class="img_btn" /></div>
+                                <div class="btn_changeImg btn_list" onclick="ChooseImageList()"><img src="~/images/@ViewBag.SanPham.Image_List" alt="Alternate Text" class="img_btn" /></div>
                             </div>
                         </div>
                         <div class="single-right simpleCart_shelfItem">
@@ -24,10 +78,16 @@
                             </div>
                             <p class="price item_price">@ViewBag.SanPham.GiaMoi VND</p>
                             <div class="description">
-                                <p><span></span> @ViewBag.SanPham.MoTaNgan</p>
+                                <h3>Thông số sản phẩm: </h3>
+                                @foreach (var mtn in ViewBag.SanPham.MoTaNgan?.Split(". "))
+                                {
+                                    <p><span>@mtn</span> </p>
+                                }
+                                <h3>Mô tả:</h3>
+                                <p>@ViewBag.SanPham.MoTa</p>
                             </div>
                             <div class="color-quality">
-                                <h6>Quality :</h6>
+                                <h6>Số lượng :</h6>
                                 <div class="quantity">
                                     <div class="quantity-select">
                                         <div class="entry value-minus1">&nbsp;</div>
@@ -50,8 +110,15 @@
                                 <!--quantity-->
                             </div>
                             <div class="women">
-                                <span class="size">@ViewBag.SanPham.Size </span>
-                                <a href="/addcart/@ViewBag.SanPham.ID" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                                @if (ViewBag.SanPham.Size.ToString() == "1")
+                                {
+                                    <span class="size">Size: Bé </span>
+                                }
+                                else
+                                {
+                                    <span class="size">Size: Lớn </span>
+                                }
+                                <a href="/addcart/@ViewBag.SanPham.ID" data-text="Add To Cart" class="my-cart-b item_add">Thêm vào giỏ</a>
                             </div>
                             <div class="social-icon">
                                 <a href="#"><i class="icon"></i></a>

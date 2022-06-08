@@ -26,7 +26,7 @@
                     <div class="col-md-12">
 
                         <p>
-                            <a asp-area="Admin" asp-controller="SanPham" asp-action="Create">Create New</a>
+                            <a asp-area="Admin" asp-controller="SanPham" asp-action="Create">Tạo sản phẩm mới</a>
                         </p>
                         <form asp-controller="SanPham" asp-action="Index" method="get">
                             <p>
@@ -112,32 +112,57 @@
                                             @Html.DisplayFor(modelItem => item.TrangThai)
                                         </td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Sửa</a> |
+                                            <a asp-action="Details" asp-route-id="@item.ID">Thông tin</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Xóa</a>
                                         </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
+                        <div>
+                            <form class="btn_paging" action="/admin/SanPham" method="post">
+
+                                <input type="hidden" name="page" value="1" />
+                                <button type="submit">Trang đầu</button>
+                            </form>
+                            <form class="btn_paging" action="/admin/SanPham" method="post">
+
+                                <input type="hidden" name="page" value="@((Int32)ViewBag.CurrentPage == 1 ? 1 : (Int32)ViewBag.CurrentPage -1)" />
+                                <button type="submit">Trước</button>
+                            </form>
+                            <input type="text" style="text-align:center;" value="Trang @(ViewBag.CurrentPage) / @(ViewBag.PageCount.ToString())" />
+                            <form class="btn_paging" action="/admin/SanPham" method="post">
+
+                                <input type="hidden" name="page" value="@((Int32)ViewBag.CurrentPage == (Int32)ViewBag.PageCount ? (Int32)ViewBag.PageCount : (Int32)ViewBag.CurrentPage + 1)" />
+                                <button type="submit">Sau</button>
+                            </form>
+                            <form class="btn_paging" action="/admin/SanPham" method="post">
+
+                                <input type="hidden" name="page" value="@((Int32)ViewBag.PageCount)" />
+                                <button type="submit">Trang cuối</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            function DeleteSession() {
-                $.ajax({
-                    url: "/Login/LogOut",
-                    type: "POST",
-                    success: function (data) {
-                        if (data.success === "True") {
-                            alert("Log out thành công...");
-                            location.href = '/'
-                        }
-                    },
-                    error: function (data) {
-                        console.log(data);
-                    }
-                })
+    </div>
+</div>
+<script>
+    function DeleteSession() {
+        $.ajax({
+            url: "/Login/LogOut",
+            type: "POST",
+            success: function (data) {
+                if (data.success === "True") {
+                    alert("Log out thành công...");
+                    location.href = '/'
+                }
+            },
+            error: function (data) {
+                console.log(data);
             }
-        </script>
+        })
+    }
+</script>
