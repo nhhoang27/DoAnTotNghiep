@@ -8,8 +8,9 @@
     .btn_paging {
         display: inline-block;
     }
-    .img-thumbnail{
-        max-width:100px;
+
+    .img-thumbnail {
+        max-width: 100px;
     }
 </style>
 <div class="wrapper">
@@ -25,7 +26,7 @@
                     <div class="col-md-12">
 
                         <p>
-                            <a asp-area="Admin" asp-controller="SanPham" asp-action="Create">Create New</a>
+                            <a asp-area="Admin" asp-controller="SanPham" asp-action="Create">Tạo sản phẩm mới</a>
                         </p>
                         <form asp-controller="SanPham" asp-action="Index" method="get">
                             <p>
@@ -111,9 +112,9 @@
                                             @Html.DisplayFor(modelItem => item.TrangThai)
                                         </td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                            <a asp-action="Edit" asp-route-id="@item.ID">Sửa</a> |
+                                            <a asp-action="Details" asp-route-id="@item.ID">Thông tin</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ID">Xóa</a>
                                         </td>
                                     </tr>
                                 }
@@ -164,4 +165,6 @@
                     }
                 })
             }
-        </script>
+        })
+    }
+</script>

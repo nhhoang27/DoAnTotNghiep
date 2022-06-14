@@ -1,8 +1,9 @@
 ﻿<!--content-->
 <style>
-    .img_btn{
-        max-width:100px;
+    .img_btn {
+        max-width: 100px;
     }
+
     .btn_changeImg {
         width: 150px;
         height: 150px;
@@ -13,14 +14,17 @@
         cursor: pointer;
         border-radius: 5px;
     }
-    .box_btn_img{
-        margin-top:2em;
-        display:flex;
-        justify-content:space-around;
+
+    .box_btn_img {
+        margin-top: 2em;
+        display: flex;
+        justify-content: space-around;
     }
-    .slides{
-        list-style:none!important;
+
+    .slides {
+        list-style: none !important;
     }
+
     .btn_img_choosed {
         border: 1px solid red;
         display: flex;
@@ -56,15 +60,14 @@
                                         }
                                     </script>
                                     <li data-thumb="images/si.jpg" class="image_main">
-                                        <div class="thumb-image"> 
-                                            <img src="~/images/@ViewBag.SanPham.Image" data-imagezoom="true" class="img-responsive img_main"> 
+                                        <div class="thumb-image">
+                                            <img src="~/images/@ViewBag.SanPham.Image" data-imagezoom="true" class="img-responsive img_main">
                                             <img src="~/images/@ViewBag.SanPham.Image_List" data-imagezoom="true" class="img-responsive img_lst hidden">
                                         </div>
-                                    </li>
                                 </ul>
                             </div>
                             <div class="box_btn_img">
-                                <div class="btn_changeImg btn_main btn_img_choosed" onclick="ChooseImageMain()"><img src="~/images/@ViewBag.SanPham.Image" alt="Alternate Text" class="img_btn"/></div>
+                                <div class="btn_changeImg btn_main btn_img_choosed" onclick="ChooseImageMain()"><img src="~/images/@ViewBag.SanPham.Image" alt="Alternate Text" class="img_btn" /></div>
                                 <div class="btn_changeImg btn_list" onclick="ChooseImageList()"><img src="~/images/@ViewBag.SanPham.Image_List" alt="Alternate Text" class="img_btn" /></div>
                             </div>
                         </div>
@@ -76,15 +79,15 @@
                             <p class="price item_price">@ViewBag.SanPham.GiaMoi VND</p>
                             <div class="description">
                                 <h3>Thông số sản phẩm: </h3>
-                                @foreach(var mtn in ViewBag.SanPham.MoTaNgan.Split(". "))
+                                @foreach (var mtn in ViewBag.SanPham.MoTaNgan?.Split(". "))
                                 {
                                     <p><span>@mtn</span> </p>
                                 }
-                            <h3>Mô tả:</h3>
-                            <p>@ViewBag.SanPham.MoTa</p>
+                                <h3>Mô tả:</h3>
+                                <p>@ViewBag.SanPham.MoTa</p>
                             </div>
                             <div class="color-quality">
-                                <h6>Quality :</h6>
+                                <h6>Số lượng :</h6>
                                 <div class="quantity">
                                     <div class="quantity-select">
                                         <div class="entry value-minus1">&nbsp;</div>
@@ -115,8 +118,7 @@
                                 {
                                     <span class="size">Size: Lớn </span>
                                 }
-                                @*<span class="size">@ViewBag.SanPham.Size </span>*@
-                                <a href="/addcart/@ViewBag.SanPham.ID" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                                <a href="/addcart/@ViewBag.SanPham.ID" data-text="Add To Cart" class="my-cart-b item_add">Thêm vào giỏ</a>
                             </div>
                             <div class="social-icon">
                                 <a href="#"><i class="icon"></i></a>
