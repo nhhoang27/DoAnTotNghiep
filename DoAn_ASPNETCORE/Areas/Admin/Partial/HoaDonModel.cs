@@ -19,6 +19,7 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Models
         public string Sdt { get; set; }
         public int ThanhTien { get; set; }
         public int TrangThai { get; set; }
+        public string StrTrangThai { get; set; }
     }
     public class ResultChiTietHoaDon
     {

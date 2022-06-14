@@ -246,9 +246,17 @@
                             newHtml += '<td>' + hoaDon.hoTen + '</td>';
                             newHtml += '<td>' + hoaDon.sdt + '</td>';
                             newHtml += '<td>' + hoaDon.thanhTien + '</td>';
-                            newHtml += '<td>' + hoaDon.trangThai + '</td>';
+                            newHtml += '<td>' + hoaDon.strTrangThai + '</td>';
                             newHtml += '<td>' + '<button type="button" id="edit_hoadon" data-idhoadon="' + hoaDon.id + '" class="btn btn-primary" data-toggle="modal" data-target="#EditModal">Edit</button>';
-                            newHtml += '<button type="button" id="btn_delete_hoadon" data-idhoadon="' + hoaDon.id + '" class="btn_delete_hoadon btn btn-danger">Delete</button>' + '</td></tr>';
+                            newHtml += '<button type="button" id="btn_delete_hoadon" data-idhoadon="' + hoaDon.id + '" class="btn_delete_hoadon btn btn-danger">Delete</button>' + '</td>';
+                            if (hoaDon.trangThai === 1) {
+                                newHtml += '<td>' + '<button type="button" id="edit1_hoadon" onclick="updateStatusOrder('+ hoaDon.id +',2)" class="btn btn-primary" >Xác nhận đơn</button>';
+                                newHtml += '<td>' + '<button type="button" id="edit2_hoadon" onclick="updateStatusOrder('+ hoaDon.id +',4)" class="btn btn-primary" >Hủy đơn</button>';
+                            }
+                            else if(hoaDon.trangThai === 2){
+                                newHtml += '<td>' + '<button type="button" id="edit3_hoadon" onclick="updateStatusOrder('+ hoaDon.id +',3)" class="btn btn-primary" >Hoàn tất đơn</button>';
+                            }
+                            newHtml += '</tr>';
                         });
                         $("#dshoadon").html(newHtml);
                     }).fail(function () {
@@ -257,6 +265,30 @@
 
 
                 };
+                function updateStatusOrder(id, status) {
+                    const data = { 'Id': id, 'Status': status };
+                    $.ajax({
+                        url: "/api/HoaDonAPI/UpdateStatusOrder"/* + id*/,
+                        type: "PUT",
+                        contentType: "Application/json",
+                        data: JSON.stringify(data),
+                        dataType: "json"
+                    }).done(function (reponse) {
+                        if (status === 2) {
+                            alert('Đã xác nhận đơn');
+                        }
+                        else if (status === 3) {
+                            alert('Hoàn tất đơn hàng');
+                        }
+                        else {
+                            alert('Hủy đơn hàng thành công');
+                        }
+                        window.location.reload();
+
+                    }).fail(function () {
+                        alert('Thất bại !');
+                    });
+                }
                 function addHoaDon() {
                     var insert = {};
                     insert.User_ID = parseInt($("#userid").val());
