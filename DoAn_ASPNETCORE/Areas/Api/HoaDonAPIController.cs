@@ -24,9 +24,18 @@ namespace DoAn_ASPNETCORE.Areas.Api
 
         // GET: api/HoaDonAPI
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<HoaDonModel>>> GetHoaDonModel()
+        public async Task<ActionResult<IEnumerable<HoaDonModelDTO>>> GetHoaDonModel()
         {
-            return await _context.HoaDonModel.ToListAsync();
+            return await _context.HoaDonModel.Select(x => new HoaDonModelDTO
+            {
+                ID = x.ID,
+                HoTen = x.HoTen,
+                Sdt = x.Sdt,
+                ThanhTien = x.ThanhTien,
+                TrangThai = x.TrangThai,
+                User_ID = x.User_ID,
+                StrTrangThai = x.TrangThai == 1 ? "Chờ xác nhận" : x.TrangThai == 2 ? "Đang giao hàng" : x.TrangThai == 3 ? "Hoàn tất đơn hàng" : "Đã hủy"
+            }).ToListAsync();
         }
 
         // GET: api/HoaDonAPI/5
@@ -40,7 +49,8 @@ namespace DoAn_ASPNETCORE.Areas.Api
                 Sdt = x.Sdt,
                 ThanhTien = x.ThanhTien,
                 TrangThai = x.TrangThai,
-                User_ID = x.User_ID
+                User_ID = x.User_ID,
+                StrTrangThai = x.TrangThai == 1 ? "Chờ xác nhận" : x.TrangThai == 2 ? "Đang giao hàng" : x.TrangThai == 3 ? "Hoàn tất đơn hàng" : "Đã hủy"
             }).FirstOrDefaultAsync();
 
             if (hoaDonModel == null)
@@ -85,6 +95,42 @@ namespace DoAn_ASPNETCORE.Areas.Api
             catch (DbUpdateConcurrencyException)
             {
                 if (!HoaDonModelExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // PUT: api/HoaDonAPI/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        public class UpdateStatusOrderModel
+        {
+            public int Id { get; set; }
+            public int Status { get; set; }
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdateStatusOrder(UpdateStatusOrderModel model)
+        {
+            try
+            {
+                var order = await _context.HoaDonModel.FindAsync(model.Id);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+                order.TrangThai = model.Status;
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!HoaDonModelExists(model.Id))
                 {
                     return NotFound();
                 }
