@@ -42,15 +42,15 @@ namespace DoAn_ASPNETCORE.Areas.Api
         [HttpGet("{id}")]
         public async Task<ActionResult<ResultChiTietHoaDon>> GetHoaDonModel(int id)
         {
-            var hoaDonModel = await _context.HoaDonModel.Where(x => x.ID == id).Select(x => new HoaDonModelDTO
-            {
-                ID = x.ID,
-                HoTen = x.HoTen,
-                Sdt = x.Sdt,
-                ThanhTien = x.ThanhTien,
-                TrangThai = x.TrangThai,
-                User_ID = x.User_ID
-            }).FirstOrDefaultAsync();
+            //var hoaDonModel = await _context.HoaDonModel.Where(x => x.ID == id).Select(x => new HoaDonModelDTO
+            //{
+            //    ID = x.ID,
+            //    HoTen = x.HoTen,
+            //    Sdt = x.Sdt,
+            //    ThanhTien = x.ThanhTien,
+            //    TrangThai = x.TrangThai,
+            //    User_ID = x.User_ID
+            //}).FirstOrDefaultAsync();
 
             //if (hoaDonModel == null)
             //{

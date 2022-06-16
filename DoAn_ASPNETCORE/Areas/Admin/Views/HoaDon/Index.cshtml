@@ -93,8 +93,14 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="TrangThai" class="control-label"></label>
-                        <input id="trangthai" asp-for="TrangThai" class="form-control" />
-                        <span class="text-danger">@Html.ValidationMessageFor(model => model.TrangThai)</span>
+                        @*<input id="trangthai" asp-for="TrangThai" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.TrangThai)</span>*@
+                        <select id="TrangThai" asp-for="TrangThai" style="padding: 8px 1em;height: 40px; margin-left:1em;">
+                            <option value="1">Chờ xác nhận</option>
+                            <option value="2">Đang giao</option>
+                            <option value="3">Hoàn tất</option>
+                            <option value="4">Đã hủy đơn</option>
+                        </select>
                     </div>
                 </form>
             </div>
@@ -140,8 +146,14 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="TrangThai" class="control-label"></label>
-                        <input id="edit_trangthai" asp-for="TrangThai" class="form-control" />
-                        <span class="text-danger">@Html.ValidationMessageFor(model => model.TrangThai)</span>
+                        @*<input id="edit_trangthai" asp-for="TrangThai" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.TrangThai)</span>*@
+                        <select id="edit_trangthai" asp-for="TrangThai" style="padding: 8px 1em;height: 40px; margin-left:1em;">
+                            <option value="1">Chờ xác nhận</option>
+                            <option value="2">Đang giao</option>
+                            <option value="3">Hoàn tất</option>
+                            <option value="4">Đã hủy đơn</option>
+                        </select>
                     </div>
                 </form>
                 <h4>Chi tiết hóa đơn</h4>
@@ -299,7 +311,7 @@
 
                     insert.ThanhTien = parseInt($("#thanhtien").val());
 
-                    insert.TrangThai = parseInt($("#trangthai").val());
+                    insert.TrangThai = parseInt($("#TrangThai").val());
 
                     $.ajax({
                         url: "/api/HoaDonAPI/PostHoaDonModel",
