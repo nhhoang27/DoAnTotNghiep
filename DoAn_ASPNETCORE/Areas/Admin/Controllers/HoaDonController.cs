@@ -85,38 +85,48 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,User_ID,HoTen,Sdt,ThanhTien,TrangThai,ListDetail")] HoaDonModel hoaDonModel, /*[Bind("ID,HoaDon_ID,TenSP,SoLuong,Gia,KhuyenMai,ThanhTien,TrangThai")] ChiTietHoaDonModel[] LstchitiethoaDonModel*/ string[] TenSP, string[] SoLuong, string[] Gia, int[] TrangThai)
         {
-            var HoaDon = from m in _context.HoaDonModel
-                         select m;
-            int size = HoaDon.Count();
-            //if (ModelState.IsValid)
-            //{
-            _context.Add(hoaDonModel);
-            size++;
-            await _context.SaveChangesAsync();
-            for(var i = 0; i < TenSP.Count(); i++)
+            var url = Url.RouteUrl(new { area = "", controller = "Pages", action = "Index" });
+            try
             {
-                var CTDH = new ChiTietHoaDonModel();
-                CTDH.HoaDon_ID = hoaDonModel.ID;
-                CTDH.TenSP = TenSP[i];
-                CTDH.SoLuong = SoLuong[i];
-                CTDH.Gia = Gia[i];
-                CTDH.TrangThai = TrangThai[i];
-                _context.Add(CTDH);
+                var HoaDon = from m in _context.HoaDonModel
+                             select m;
+                int size = HoaDon.Count();
+                //if (ModelState.IsValid)
+                //{
+                _context.Add(hoaDonModel);
+                size++;
                 await _context.SaveChangesAsync();
+                for (var i = 0; i < TenSP.Count(); i++)
+                {
+                    var CTDH = new ChiTietHoaDonModel();
+                    CTDH.HoaDon_ID = hoaDonModel.ID;
+                    CTDH.TenSP = TenSP[i];
+                    CTDH.SoLuong = SoLuong[i].Contains("/") ? SoLuong[i].Split("/")[0] : SoLuong[i];
+                    CTDH.Gia = Gia[i];
+                    CTDH.TrangThai = TrangThai[i];
+                    CTDH.ThanhTien = Int32.Parse(Gia[i]) * Int32.Parse(SoLuong[i].Contains("/") ? SoLuong[i].Split("/")[0] : SoLuong[i]);
+                    _context.Add(CTDH);
+                    await _context.SaveChangesAsync();
+                }
+                //chitiethoaDonModel.HoaDon_ID = hoaDonModel.ID;
+                //foreach(var item in LstchitiethoaDonModel)
+                //{
+                //    item.HoaDon_ID = hoaDonModel.ID;
+                //    _context.Add(item);
+                //    await _context.SaveChangesAsync();
+                //}
+                HttpContext.Session.Remove("cart");
+                return Redirect(url);
+                //}
+                //ViewData["User_ID"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", hoaDonModel.User_ID);
+                //return View(hoaDonModel);
             }
-            //chitiethoaDonModel.HoaDon_ID = hoaDonModel.ID;
-            //foreach(var item in LstchitiethoaDonModel)
-            //{
-            //    item.HoaDon_ID = hoaDonModel.ID;
-            //    _context.Add(item);
-            //    await _context.SaveChangesAsync();
-            //}
-            HttpContext.Session.Remove("cart");
-            var url = Url.RouteUrl(new {area="", controller = "Pages",action="Index"});
-            return Redirect(url);
-            //}
-            //ViewData["User_ID"] = new SelectList(_context.Set<UserModel>(), "ID", "ID", hoaDonModel.User_ID);
-            //return View(hoaDonModel);
+            catch (Exception ex)
+            {
+                throw ex;
+                return Redirect(url);
+            }
+            
         }
 
         // GET: Admin/HoaDon/Edit/5
