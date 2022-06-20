@@ -17,6 +17,9 @@
         border-top: 1px solid darkgray;
         margin: 1em;
     }
+    .btn_paging {
+        display: inline-block;
+    }
 </style>
 <!--content-->
 <div class="content">
@@ -76,6 +79,37 @@
                         </div>
                         <div class="col-md-12 product-tab1-grid2"></div>
                     }
+                </div>
+                <div>
+                    <script>
+                        var url = location.href;
+                        var searchStr = url.split('=')[1];
+                        $('.search').val(searchStr);
+                    </script>
+                    @*@{
+                        string url = @Request.Url.AbsoluteUri;
+                    }*@
+                    <form class="btn_paging" action="/Pages/search" method="post">
+                        <input type="hidden" class="search" value="" />
+                        <input type="hidden" name="page" value="1" />
+                        <button type="submit">Trang đầu</button>
+                    </form>
+                    <form class="btn_paging" action="/Pages/search" method="post">
+                        <input type="hidden" class="search" value="" />
+                        <input type="hidden" name="page" value="@((Int32)ViewBag.page == 1 ? 1 : (Int32)ViewBag.page -1)" />
+                        <button type="submit">Trước</button>
+                    </form>
+                    <input type="text" style="text-align:center;" value="Trang @((ViewBag.PageCount < ViewBag.page ? 0 : ViewBag.page)) / @(ViewBag.PageCount.ToString())" />
+                    <form class="btn_paging" action="/Pages/search" method="post">
+                        <input type="hidden" class="search" value="" />
+                        <input type="hidden" name="page" value="@((Int32)ViewBag.page == (Int32)ViewBag.PageCount ? (Int32)ViewBag.PageCount : (Int32)ViewBag.page + 1)" />
+                        <button type="submit">Sau</button>
+                    </form>
+                    <form class="btn_paging" action="/Pages/search" method="post">
+                        <input type="hidden" class="search" value="" />
+                        <input type="hidden" name="page" value="@((Int32)ViewBag.PageCount)" />
+                        <button type="submit">Trang cuối</button>
+                    </form>
                 </div>
             </div>
         </div>
