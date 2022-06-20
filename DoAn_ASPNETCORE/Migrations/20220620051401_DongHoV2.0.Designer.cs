@@ -4,14 +4,16 @@ using DoAn_ASPNETCORE.Areas.Admin.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DoAn_ASPNETCORE.Migrations
 {
     [DbContext(typeof(Webbanhang))]
-    partial class WebbanhangModelSnapshot : ModelSnapshot
+    [Migration("20220620051401_DongHoV2.0")]
+    partial class DongHoV20
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

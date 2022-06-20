@@ -17,6 +17,7 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Models
         public int User_ID { get; set; }
         public string HoTen { get; set; }
         public string Sdt { get; set; }
+        public string DiaChi { get; set; }
         public int ThanhTien { get; set; }
         public int TrangThai { get; set; }
         public string StrTrangThai { get; set; }

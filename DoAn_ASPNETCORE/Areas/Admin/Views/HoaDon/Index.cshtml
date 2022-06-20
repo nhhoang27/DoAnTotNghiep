@@ -140,6 +140,11 @@
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.Sdt)</span>
                     </div>
                     <div class="form-group">
+                        <label asp-for="DiaChi" class="control-label"></label>
+                        <input id="edit_diaChi" asp-for="DiaChi" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.DiaChi)</span>
+                    </div>
+                    <div class="form-group">
                         <label asp-for="ThanhTien" class="control-label"></label>
                         <input id="edit_thanhtien" asp-for="ThanhTien" class="form-control" />
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.ThanhTien)</span>
@@ -227,6 +232,9 @@
                                         @Html.DisplayNameFor(model => model.Sdt)
                                     </th>
                                     <th>
+                                        @Html.DisplayNameFor(model => model.DiaChi)
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.ThanhTien)
                                     </th>
                                     <th>
@@ -242,6 +250,8 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
         @section Scripts{
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
             <script>
@@ -257,6 +267,7 @@
                             newHtml += '<tr><td>' + hoaDon.user_ID + '</td>';
                             newHtml += '<td>' + hoaDon.hoTen + '</td>';
                             newHtml += '<td>' + hoaDon.sdt + '</td>';
+                            newHtml += '<td>' + hoaDon.diaChi + '</td>';
                             newHtml += '<td>' + hoaDon.thanhTien + '</td>';
                             newHtml += '<td>' + hoaDon.strTrangThai + '</td>';
                             newHtml += '<td>' + '<button type="button" id="edit_hoadon" data-idhoadon="' + hoaDon.id + '" class="btn btn-primary" data-toggle="modal" data-target="#EditModal">Edit</button>';
@@ -355,6 +366,7 @@
                         $("#edit_userid").val(dataHD.user_ID);
                         $("#edit_hoten").val(dataHD.hoTen);
                         $("#edit_sdt").val(dataHD.sdt);
+                        $("#edit_diaChi").val(dataHD.diaChi);
                         $("#edit_thanhtien").val(dataHD.thanhTien);
                         $("#edit_trangthai").val(dataHD.trangThai);
                         var newHtml = "";
@@ -382,6 +394,7 @@
                     update.HoTen = $("#edit_hoten").val();
 
                     update.Sdt = $("#edit_sdt").val();
+                    update.DiaChi = $("#edit_diaChi").val();
 
                     update.ThanhTien = parseInt($("#edit_thanhtien").val());
 

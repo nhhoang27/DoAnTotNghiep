@@ -83,7 +83,7 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,User_ID,HoTen,Sdt,ThanhTien,TrangThai,ListDetail")] HoaDonModel hoaDonModel, /*[Bind("ID,HoaDon_ID,TenSP,SoLuong,Gia,KhuyenMai,ThanhTien,TrangThai")] ChiTietHoaDonModel[] LstchitiethoaDonModel*/ string[] TenSP, string[] SoLuong, string[] Gia, int[] TrangThai)
+        public async Task<IActionResult> Create([Bind("ID,User_ID,HoTen,Sdt,DiaChi,ThanhTien,TrangThai,ListDetail")] HoaDonModel hoaDonModel, /*[Bind("ID,HoaDon_ID,TenSP,SoLuong,Gia,KhuyenMai,ThanhTien,TrangThai")] ChiTietHoaDonModel[] LstchitiethoaDonModel*/ string[] TenSP, string[] SoLuong, string[] Gia, int[] TrangThai)
         {
             var url = Url.RouteUrl(new { area = "", controller = "Pages", action = "Index" });
             try
@@ -123,7 +123,7 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
                 return Redirect(url);
             }
             
