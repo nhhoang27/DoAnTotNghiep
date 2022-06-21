@@ -60,8 +60,8 @@ namespace DoAn_ASPNETCORE.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Gia")
-                        .HasColumnType("int");
+                    b.Property<string>("Gia")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("HoaDon_ID")
                         .HasColumnType("int");
@@ -69,11 +69,8 @@ namespace DoAn_ASPNETCORE.Migrations
                     b.Property<int>("KhuyenMai")
                         .HasColumnType("int");
 
-                    b.Property<int>("SanPham_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SoLuong")
-                        .HasColumnType("int");
+                    b.Property<string>("SoLuong")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenSP")
                         .HasColumnType("nvarchar(max)");
@@ -81,11 +78,12 @@ namespace DoAn_ASPNETCORE.Migrations
                     b.Property<int>("ThanhTien")
                         .HasColumnType("int");
 
+                    b.Property<int>("TrangThai")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("HoaDon_ID");
-
-                    b.HasIndex("SanPham_ID");
 
                     b.ToTable("ChiTietHoaDonModel");
                 });
@@ -113,6 +111,9 @@ namespace DoAn_ASPNETCORE.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("DiaChi")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("HoTen")
                         .HasColumnType("nvarchar(max)");
 
@@ -122,8 +123,8 @@ namespace DoAn_ASPNETCORE.Migrations
                     b.Property<int>("ThanhTien")
                         .HasColumnType("int");
 
-                    b.Property<string>("TrangThai")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TrangThai")
+                        .HasColumnType("int");
 
                     b.Property<int>("User_ID")
                         .HasColumnType("int");
@@ -147,8 +148,8 @@ namespace DoAn_ASPNETCORE.Migrations
 
                     b.Property<string>("TenLoai")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("TrangThai")
                         .IsRequired()
@@ -294,11 +295,6 @@ namespace DoAn_ASPNETCORE.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoAn_ASPNETCORE.Areas.Admin.Models.SanPhamModel", "SanPham")
-                        .WithMany("lstChiTietHoaDon")
-                        .HasForeignKey("SanPham_ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("DoAn_ASPNETCORE.Areas.Admin.Models.HoaDonModel", b =>

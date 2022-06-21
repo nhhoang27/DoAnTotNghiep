@@ -72,27 +72,27 @@
                 <form>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="User_ID" class="control-label"></label>
+                        <label asp-for="User_ID" class="control-label">Mã người dùng</label>
                         <select asp-for="User_ID" id="userid" class="form-control" asp-items="ViewBag.User_ID"></select>
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.User_ID)</span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="HoTen" class="control-label"></label>
+                        <label asp-for="HoTen" class="control-label">Họ tên khách hàng</label>
                         <input id="hoten" asp-for="HoTen" class="form-control" />
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.HoTen)</span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Sdt" class="control-label"></label>
+                        <label asp-for="Sdt" class="control-label">Số điện thoại</label>
                         <input id="sdt" asp-for="Sdt" class="form-control" />
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.Sdt)</span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ThanhTien" class="control-label"></label>
+                        <label asp-for="ThanhTien" class="control-label">Thành tiền</label>
                         <input id="thanhtien" asp-for="ThanhTien" class="form-control" />
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.ThanhTien)</span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="TrangThai" class="control-label"></label>
+                        <label asp-for="TrangThai" class="control-label">Trạng thái đơn hàng</label>
                         <select id="TrangThai" asp-for="TrangThai" style="padding: 8px 1em;height: 40px; margin-left:1em;">
                             <option value="1">Chờ xác nhận</option>
                             <option value="2">Đang giao</option>
@@ -123,27 +123,32 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" id="edit_id" asp-for="ID" />
                     <div class="form-group">
-                        <label asp-for="User_ID" class="control-label"></label>
+                        <label asp-for="User_ID" class="control-label">Mã người dùng</label>
                         <select asp-for="User_ID" id="edit_userid" class="form-control" asp-items="ViewBag.User_ID"></select>
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.User_ID)</span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="HoTen" class="control-label"></label>
+                        <label asp-for="HoTen" class="control-label">Họ tên khách hàng</label>
                         <input id="edit_hoten" asp-for="HoTen" class="form-control" />
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.HoTen)</span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Sdt" class="control-label"></label>
+                        <label asp-for="Sdt" class="control-label">Số điện thoại</label>
                         <input id="edit_sdt" asp-for="Sdt" class="form-control" />
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.Sdt)</span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ThanhTien" class="control-label"></label>
+                        <label asp-for="DiaChi" class="control-label">Địa chỉ giao hàng</label>
+                        <input id="edit_diaChi" asp-for="DiaChi" class="form-control" />
+                        <span class="text-danger">@Html.ValidationMessageFor(model => model.DiaChi)</span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ThanhTien" class="control-label">Thành tiền</label>
                         <input id="edit_thanhtien" asp-for="ThanhTien" class="form-control" />
                         <span class="text-danger">@Html.ValidationMessageFor(model => model.ThanhTien)</span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="TrangThai" class="control-label"></label>
+                        <label asp-for="TrangThai" class="control-label">Trạng thái đơn hàng</label>
                         <select id="edit_trangthai" asp-for="TrangThai" style="padding: 8px 1em;height: 40px; margin-left:1em;">
                             <option value="1">Chờ xác nhận</option>
                             <option value="2">Đang giao</option>
@@ -202,14 +207,14 @@
                         </p>
 
                         @*<p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Thêm</button>
-                        </p>*@
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Thêm</button>
+                            </p>*@
                         @*<form asp-controller="User" asp-action="Index" method="get">
-                            <p>
+                                <p>
 
-                                Tên Sản Phẩm: <input type="text" asp-for="searchString"><button type="submit" class="btn-facebook">Tìm</button>
-                            </p>
-                        </form>*@
+                                    Tên Sản Phẩm: <input type="text" asp-for="searchString"><button type="submit" class="btn-facebook">Tìm</button>
+                                </p>
+                            </form>*@
                         <table class="table">
                             <thead>
                                 <tr>
@@ -221,6 +226,9 @@
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.Sdt)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DiaChi)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.ThanhTien)
@@ -238,191 +246,191 @@
                 </div>
             </div>
         </div>
-        @section Scripts{
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-            <script>
-                window.onload = function () {
-                    $.ajax({
-                        url: "../../api/HoaDonAPI/GetHoaDonModel",
-                        type: "GET",
-                        contentType: "Application/json;charset-utf-8",
-                    }).done(function (reponse) {
-                        console.log(reponse);
-                        var newHtml = "";
-                        $.each(reponse, function (index, hoaDon) {
-                            newHtml += '<tr><td>' + hoaDon.user_ID + '</td>';
-                            newHtml += '<td>' + hoaDon.hoTen + '</td>';
-                            newHtml += '<td>' + hoaDon.sdt + '</td>';
-                            newHtml += '<td>' + hoaDon.thanhTien + '</td>';
-                            newHtml += '<td>' + hoaDon.strTrangThai + '</td>';
-                            newHtml += '<td>' + '<button type="button" id="edit_hoadon" data-idhoadon="' + hoaDon.id + '" class="btn btn-primary" data-toggle="modal" data-target="#EditModal">Edit</button>';
-                            newHtml += '<button type="button" id="btn_delete_hoadon" data-idhoadon="' + hoaDon.id + '" class="btn_delete_hoadon btn btn-danger">Delete</button>' + '</td>';
-                            if (hoaDon.trangThai === 1) {
-                                newHtml += '<td>' + '<button type="button" id="edit1_hoadon" onclick="updateStatusOrder(' + hoaDon.id + ',2)" class="btn btn-primary" >Xác nhận đơn</button>';
-                                newHtml += '<td>' + '<button type="button" id="edit2_hoadon" onclick="updateStatusOrder(' + hoaDon.id + ',4)" class="btn btn-primary" >Hủy đơn</button>';
-                            }
-                            else if (hoaDon.trangThai === 2) {
-                                newHtml += '<td>' + '<button type="button" id="edit3_hoadon" onclick="updateStatusOrder(' + hoaDon.id + ',3)" class="btn btn-primary" >Hoàn tất đơn</button>';
-                            }
-                            newHtml += '</tr>';
-                        });
-                        $("#dshoadon").html(newHtml);
-                    }).fail(function () {
-                        alert('Thất bại !');
-                    });
-                    function updateStatusOrder(id, status) {
-                        const data = { 'Id': id, 'Status': status };
-                        $.ajax({
-                            url: "/api/HoaDonAPI/UpdateStatusOrder"/* + id*/,
-                            type: "PUT",
-                            contentType: "Application/json",
-                            data: JSON.stringify(data),
-                            dataType: "json"
-                        }).done(function (reponse) {
-                            if (status === 2) {
-                                alert('Đã xác nhận đơn');
-                            }
-                            else if (status === 3) {
-                                alert('Hoàn tất đơn hàng');
-                            }
-                            else {
-                                alert('Hủy đơn hàng thành công');
-                            }
-                            window.location.reload();
-                        }).fail(function () {
-                            alert('Thất bại !');
-                        });
+    </div>
+</div>
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        window.onload = function () {
+            $.ajax({
+                url: "../../api/HoaDonAPI/GetHoaDonModel",
+                type: "GET",
+                contentType: "Application/json;charset-utf-8",
+            }).done(function (reponse) {
+                console.log(reponse);
+                var newHtml = "";
+                $.each(reponse, function (index, hoaDon) {
+                    newHtml += '<tr><td>' + hoaDon.user_ID + '</td>';
+                    newHtml += '<td>' + hoaDon.hoTen + '</td>';
+                    newHtml += '<td>' + hoaDon.sdt + '</td>';
+                    newHtml += '<td>' + hoaDon.diaChi + '</td>';
+                    newHtml += '<td>' + hoaDon.thanhTien + '</td>';
+                    newHtml += '<td>' + hoaDon.strTrangThai + '</td>';
+                    newHtml += '<td>' + '<button type="button" id="edit_hoadon" data-idhoadon="' + hoaDon.id + '" class="btn btn-primary" data-toggle="modal" data-target="#EditModal">Edit</button>';
+                    newHtml += '<button type="button" id="btn_delete_hoadon" data-idhoadon="' + hoaDon.id + '" class="btn_delete_hoadon btn btn-danger">Delete</button>' + '</td>';
+                    if (hoaDon.trangThai === 1) {
+                        newHtml += '<td>' + '<button type="button" id="edit1_hoadon" onclick="updateStatusOrder(' + hoaDon.id + ',2)" class="btn btn-primary" >Xác nhận đơn</button>';
+                        newHtml += '<td>' + '<button type="button" id="edit2_hoadon" onclick="updateStatusOrder(' + hoaDon.id + ',4)" class="btn btn-primary" >Hủy đơn</button>';
                     }
-
-                };
-                function addHoaDon() {
-                    var insert = {};
-                    insert.User_ID = parseInt($("#userid").val());
-
-                    insert.HoTen = $("#hoten").val();
-
-                    insert.Sdt = $("#sdt").val();
-
-                    insert.ThanhTien = parseInt($("#thanhtien").val());
-
-                    insert.TrangThai = parseInt($("#TrangThai").val());
-
-                    $.ajax({
-                        url: "/api/HoaDonAPI/PostHoaDonModel",
-                        type: "POST",
-                        contentType: "Application/json;charset-utf-8",
-                        data: JSON.stringify(insert),
-                        dataType: "json"
-                    }).done(function (reponse) {
-                        $("#AddModal").modal('hide');
-                        $("#successModal").modal('show');
-
-                    }).fail(function () {
-                        alert('Thất bại !');
-                    });
-                }
-                function getHoaDon(id) {
-                    $.ajax({
-                        url: "../../api/HoaDonAPI/GetHoaDonModel/" + id,
-                        type: "GET",
-                        contentType: "Application/json;charset-utf-8",
-                        dataType: "json"
-                    }).done(function (reponse) {
-                        var dataHD = reponse.dataHoaDon;
-                        var dataDetail = reponse.lstChiTietHoaDon;
-                        $("#edit_id").val(dataHD.id);
-                        $("#edit_userid").val(dataHD.user_ID);
-                        $("#edit_hoten").val(dataHD.hoTen);
-                        $("#edit_sdt").val(dataHD.sdt);
-                        $("#edit_thanhtien").val(dataHD.thanhTien);
-                        $("#edit_trangthai").val(dataHD.trangThai);
-                        var newHtml = "";
-                        $.each(dataDetail, function (index, hoaDon) {
-                            newHtml += '<tr><td>' + hoaDon.id + '</td>';
-                            newHtml += '<td>' + hoaDon.hoaDon_ID + '</td>';
-                            newHtml += '<td>' + hoaDon.tenSP + '</td>';
-                            newHtml += '<td>' + hoaDon.soLuong + '</td>';
-                            newHtml += '<td>' + hoaDon.gia + '</td>';
-                            newHtml += '<td>' + hoaDon.khuyenMai + '</td>';
-                            newHtml += '<td>' + hoaDon.trangThai + '</td>';
-                            newHtml += '<td>' + hoaDon.thanhTien + '</td></tr>';
-
-                        })
-                        $('#chi_tiet_hoa_don').html(newHtml);
-                    }).fail(function () {
-                        alert('Thất bại !');
-                    });
-                }
-                function updateHoaDon(id) {
-                    var update = {}
-                    update.ID = parseInt(id);
-                    update.User_ID = parseInt($("#edit_userid").val());
-
-                    update.HoTen = $("#edit_hoten").val();
-
-                    update.Sdt = $("#edit_sdt").val();
-
-                    update.ThanhTien = parseInt($("#edit_thanhtien").val());
-
-                    update.TrangThai = parseInt($("#edit_trangthai").val());
-                    $.ajax({
-                        url: "/api/HoaDonAPI/PutHoaDonModel/" + id,
-                        type: "PUT",
-                        contentType: "Application/json;charset-utf-8",
-                        data: JSON.stringify(update),
-                        dataType: "json"
-                    }).done(function (reponse) {
-                        $("#EditModal").modal('hide');
-                        $("#updateModal").modal('show');
-
-                    }).fail(function () {
-                        alert('Thất bại !');
-                    });
-                }
-                function deleteHoaDon(id) {
-
-                    $.ajax({
-                        url: "../../api/HoaDonAPI/DeleteHoaDonModel/" + id,
-                        type: "DELETE",
-                        contentType: "Application/json;charset-utf-8",
-                        dataType: "json"
-                    }).done(function (res) {
-                        if (res == true) {
-                            $("#deleteModal").modal('show');
-                        } else {
-                            alert("Không xóa được hóa đơn");
-                        }
-                        
-
-                    }).fail(function () {
-                        alert('Thất bại !');
-                    });
-                }
-                $(document).ready(function () {
-                    $('button[name=btn_create_hoadon]').click(function (e) {
-                        addHoaDon();
-                        e.preventDefault();
-                    });
-                    $('body').on('click', '#edit_hoadon', function () {
-                        var id = $(this).data("idhoadon");
-                        getHoaDon(id);
-                        e.preventDefault();
-                    });
-                    $('body').on('click', '#btn_update_hoadon', function () {
-                        var id = $("#edit_id").val();
-                        updateHoaDon(id);
-                        e.preventDefault();
-                    });
-                    $('body').on('click', '.btn_delete_hoadon', function () {
-                        var id = $(this).data("idhoadon");
-                        deleteHoaDon(id);
-                        e.preventDefault();
-                    });
-                    $('button[name=btn_ok]').click(function (e) {
-                        location.reload();
-                    });
+                    else if (hoaDon.trangThai === 2) {
+                        newHtml += '<td>' + '<button type="button" id="edit3_hoadon" onclick="updateStatusOrder(' + hoaDon.id + ',3)" class="btn btn-primary" >Hoàn tất đơn</button>';
+                    }
+                    newHtml += '</tr>';
                 });
-
-            </script>
+                $("#dshoadon").html(newHtml);
+            }).fail(function () {
+                alert('Thất bại !');
+            });
+        };
+        function updateStatusOrder(id, status) {
+            const data = { 'Id': id, 'Status': status };
+            $.ajax({
+                url: "/api/HoaDonAPI/UpdateStatusOrder"/* + id*/,
+                type: "PUT",
+                contentType: "Application/json",
+                data: JSON.stringify(data),
+                dataType: "json"
+            }).done(function (reponse) {
+                if (status === 2) {
+                    alert('Đã xác nhận đơn');
+                }
+                else if (status === 3) {
+                    alert('Hoàn tất đơn hàng');
+                }
+                else {
+                    alert('Hủy đơn hàng thành công');
+                }
+                window.location.reload();
+            }).fail(function () {
+                alert('Thất bại !');
+            });
         }
+        function addHoaDon() {
+            var insert = {};
+            insert.User_ID = parseInt($("#userid").val());
+
+            insert.HoTen = $("#hoten").val();
+
+            insert.Sdt = $("#sdt").val();
+
+            insert.ThanhTien = parseInt($("#thanhtien").val());
+
+            insert.TrangThai = parseInt($("#TrangThai").val());
+
+            $.ajax({
+                url: "/api/HoaDonAPI/PostHoaDonModel",
+                type: "POST",
+                contentType: "Application/json;charset-utf-8",
+                data: JSON.stringify(insert),
+                dataType: "json"
+            }).done(function (reponse) {
+                $("#AddModal").modal('hide');
+                $("#successModal").modal('show');
+
+            }).fail(function () {
+                alert('Thất bại !');
+            });
+        }
+        function getHoaDon(id) {
+            $.ajax({
+                url: "../../api/HoaDonAPI/GetHoaDonModel/" + id,
+                type: "GET",
+                contentType: "Application/json;charset-utf-8",
+                dataType: "json"
+            }).done(function (reponse) {
+                var dataHD = reponse.dataHoaDon;
+                var dataDetail = reponse.lstChiTietHoaDon;
+                $("#edit_id").val(dataHD.id);
+                $("#edit_userid").val(dataHD.user_ID);
+                $("#edit_hoten").val(dataHD.hoTen);
+                $("#edit_sdt").val(dataHD.sdt);
+                $("#edit_diaChi").val(dataHD.diaChi);
+                $("#edit_thanhtien").val(dataHD.thanhTien);
+                $("#edit_trangthai").val(dataHD.trangThai);
+                var newHtml = "";
+                $.each(dataDetail, function (index, hoaDon) {
+                    newHtml += '<tr><td>' + hoaDon.id + '</td>';
+                    newHtml += '<td>' + hoaDon.hoaDon_ID + '</td>';
+                    newHtml += '<td>' + hoaDon.tenSP + '</td>';
+                    newHtml += '<td>' + hoaDon.soLuong + '</td>';
+                    newHtml += '<td>' + hoaDon.gia + '</td>';
+                    newHtml += '<td>' + hoaDon.khuyenMai + '</td>';
+                    newHtml += '<td>' + hoaDon.trangThai + '</td>';
+                    newHtml += '<td>' + hoaDon.thanhTien + '</td></tr>';
+
+                })
+                $('#chi_tiet_hoa_don').html(newHtml);
+            }).fail(function () {
+                alert('Thất bại !');
+            });
+        }
+        function updateHoaDon(id) {
+            var update = {}
+            update.ID = parseInt(id);
+            update.User_ID = parseInt($("#edit_userid").val());
+            update.HoTen = $("#edit_hoten").val();
+            update.Sdt = $("#edit_sdt").val();
+            update.DiaChi = $("#edit_diaChi").val();
+            update.ThanhTien = parseInt($("#edit_thanhtien").val());
+            update.TrangThai = parseInt($("#edit_trangthai").val());
+            $.ajax({
+                url: "/api/HoaDonAPI/PutHoaDonModel/" + id,
+                type: "PUT",
+                contentType: "Application/json;charset-utf-8",
+                data: JSON.stringify(update),
+                dataType: "json"
+            }).done(function (reponse) {
+                $("#EditModal").modal('hide');
+                $("#updateModal").modal('show');
+
+            }).fail(function () {
+                alert('Thất bại !');
+            });
+        }
+        function deleteHoaDon(id) {
+
+            $.ajax({
+                url: "../../api/HoaDonAPI/DeleteHoaDonModel/" + id,
+                type: "DELETE",
+                contentType: "Application/json;charset-utf-8",
+                dataType: "json"
+            }).done(function (res) {
+                if (res == true) {
+                    $("#deleteModal").modal('show');
+                } else {
+                    alert("Không xóa được hóa đơn");
+                }
+
+
+            }).fail(function () {
+                alert('Thất bại !');
+            });
+        }
+        $(document).ready(function () {
+            $('button[name=btn_create_hoadon]').click(function (e) {
+                addHoaDon();
+                e.preventDefault();
+            });
+            $('body').on('click', '#edit_hoadon', function () {
+                var id = $(this).data("idhoadon");
+                getHoaDon(id);
+                e.preventDefault();
+            });
+            $('body').on('click', '#btn_update_hoadon', function () {
+                var id = $("#edit_id").val();
+                updateHoaDon(id);
+                e.preventDefault();
+            });
+            $('body').on('click', '.btn_delete_hoadon', function () {
+                var id = $(this).data("idhoadon");
+                deleteHoaDon(id);
+                e.preventDefault();
+            });
+            $('button[name=btn_ok]').click(function (e) {
+                location.reload();
+            });
+        });
+
+    </script>
+}
 

@@ -13,6 +13,7 @@ namespace DoAn_ASPNETCORE.Areas.Admin.Models
         [ForeignKey("User_ID")]
         public virtual UserModel User { set; get; }
         public string HoTen { get; set; }
+        public string DiaChi { get; set; }
         public string Sdt { get; set; }
         public int ThanhTien { get; set; }
         public int TrangThai { get; set; }

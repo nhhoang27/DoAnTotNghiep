@@ -157,16 +157,18 @@ namespace DoAn_ASPNETCORE.Controllers
         }
 
 
-        public async Task<IActionResult> search(String search)
+        public async Task<IActionResult> search(String search, int? page)
         {
             ViewData["getSearch"] = search;
+            ViewBag.page = page ?? 1;
             var sch = from x in _context.SanPhamModel select x;
             ViewBag.Username = HttpContext.Session.GetString("username");
             if (!String.IsNullOrEmpty(search))
             {
                 sch = sch.Where(x => x.TenSP.Contains(search));
             }
-            ViewBag.lstSearch = await sch.ToListAsync();
+            ViewBag.PageCount = (int)(sch.Count() / 6);
+            ViewBag.lstSearch = await sch.Skip(5 * ((page ?? 1) - 1)).Take(5).ToListAsync();
             return View(await sch.AsNoTracking().ToListAsync());
         }
 
