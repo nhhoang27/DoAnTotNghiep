@@ -8,7 +8,7 @@
             </div>
             <div class="top-right">
                 <ul>
-                    <li><a href="~/pages/checkout">Thanh toán</a></li>
+                    <li><a href="~/checkout">Thanh toán</a></li>
                    
                     @if (string.IsNullOrEmpty(ViewBag.Username))
                     {
@@ -89,16 +89,16 @@
                 </div>
                 <div class="header-right2">
                     <div class="cart box_1">
-                        <a href="/checkout">
+                        <a href="/cart">
                             <h3>
                                 <div class="total">
                                     @*<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> 5)*@
-                                   
+
 
                                 </div>
-                                    <img src="~/user/images/bag.png" alt="" />
-                                </h3>
-                            </a>
+                                <img src="~/user/images/bag.png" alt="" />
+                            </h3>
+                        </a>
                             @*<p><a asp-controller="Pages" asp-action="Cart" class="simpleCart_empty">Empty Cart</a></p>*@
                             <div class="clearfix"> </div>
                         </div>
